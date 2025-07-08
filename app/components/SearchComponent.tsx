@@ -1,62 +1,49 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
-// import { fetchAnimeQuery } from "../utils/fetchAnime";
 import DisplayResults from "./DisplayResults";
+import { useDebounceValue } from "usehooks-ts";
+import { fetchAnimeBySearch } from "@/lib/api";
+import type { AnimeList } from "@/types/anime.type";
 
 const SearchComponent = () => {
 	const [searchQuery, setSearchQuery] = useState("");
-	const [searchResults, setSearchResults] = useState([]);
-	const [isFocus, setIsFocus] = useState(false);
+	const [searchResults, setSearchResults] = useState<AnimeList[]>([]);
 	const [loading, setLoading] = useState(false);
 
-	const handleChange = (e: any) => {
-		setLoading(true);
+	const [debouncedSearchQuery] = useDebounceValue(searchQuery, 500);
 
-		const query = e.target.value;
-		setSearchQuery(query);
-		if (query === "") {
-			setSearchResults([]);
+	const fetchData = useCallback(
+		async (query: string) => {
+			const results = await fetchAnimeBySearch(query);
+			setSearchResults(results);
 			setLoading(false);
-			return;
-		}
-		if (query.length < 3) {
-			setLoading(false);
-			return;
-		}
-		if (query.length < 3) return;
+		},
+		[debouncedSearchQuery]
+	);
 
-		// Debounce
-		// clearTimeout(window.__searchTimeout);
-		// window.__searchTimeout = setTimeout(() => {
-		// 	fetchData(query);
-		// }, 500);
-	};
-
-	const fetchData = async (query: string) => {
-		// const { results } = await fetchAnimeQuery(query);
-		// setSearchResults(results);
-		setLoading(false);
-	};
+	useEffect(() => {
+		if (debouncedSearchQuery.length >= 3) {
+			fetchData(debouncedSearchQuery);
+		}
+	}, [fetchData, debouncedSearchQuery]);
 
 	return (
 		<div className="relative max-w-md mr-4">
 			<div
-				className="flex w-48 focus-within:w-72 items-center bg-transparent px-4 py-2 transition-all
-				border-b border-slate-600"
+				className={`flex items-center bg-transparent px-4 py-2 transition-all
+				border-b border-slate-600 ${searchQuery ? "w-72" : "w-48 focus-within:w-72"}`}
 			>
 				<input
 					type="text"
 					placeholder="Search anime..."
 					value={searchQuery}
-					onChange={handleChange}
-					onFocus={() => setIsFocus(true)}
-					onBlur={() => setTimeout(() => setIsFocus(false), 200)}
+					onChange={(e) => setSearchQuery(e.target.value)}
 					className="bg-transparent outline-none focus:text-slate-300 text-slate-600 w-full placeholder-slate-400"
 				/>
 				<FaSearch className="text-slate-400 mr-2" />
 			</div>
 
-			{isFocus && searchQuery.length >= 3 && (
+			{searchQuery.length >= 3 && (
 				<DisplayResults
 					loading={loading}
 					searchResults={searchResults}

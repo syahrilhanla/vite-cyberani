@@ -1,8 +1,9 @@
 import { NavLink } from "react-router";
 import { BiLoaderAlt } from "react-icons/bi";
+import type { AnimeList } from "@/types/anime.type";
 
 interface Props {
-	searchResults: { id: number; title: string; image: string }[];
+	searchResults: AnimeList[];
 	searchQuery: string;
 	loading: boolean;
 }
@@ -24,13 +25,17 @@ const DisplayResults = ({ searchResults, searchQuery, loading }: Props) => {
 						</div>
 					) : searchResults.length > 0 ? (
 						searchResults.map((result) => (
-							<NavLink to={`/anime/${result.id}`} key={result.title}>
-								<div
-									className="flex min-w-full gap-3 py-2 cursor-pointer hover:bg-[#0f2647]/30 duration-400"
-									onClick={() => {
-										// dispatch(selectAnime(result.title));
-										// dispatch(goToEpisode(1));
-									}}
+							<div
+								className="w-full gap-3 py-2 px-4 cursor-pointer hover:bg-[#0f2647]/30 duration-400"
+								onClick={() => {
+									// dispatch(selectAnime(result.title));
+									// dispatch(goToEpisode(1));
+								}}
+							>
+								<NavLink
+									to={`/anime/${result.id}`}
+									key={result.title}
+									className="flex space-x-2"
 								>
 									<img
 										src={result.image}
@@ -46,8 +51,8 @@ const DisplayResults = ({ searchResults, searchQuery, loading }: Props) => {
 									<p className="text-xs lg:text-sm text-slate-200 text-left whitespace-normal text-ellipsis max-w-[12rem]">
 										{result.title}
 									</p>
-								</div>
-							</NavLink>
+								</NavLink>
+							</div>
 						))
 					) : (
 						<div

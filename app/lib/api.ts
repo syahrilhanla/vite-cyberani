@@ -9,3 +9,12 @@ export const fetchAnimeList = async (category: string, page = 1) => {
   const { results } = await response.json();
   return results as AnimeList[];
 };
+
+
+export const fetchAnimeBySearch = async (searchQuery: string) => {
+  const response = await fetch(
+    `${BASE_URL}/${searchQuery}`
+  );
+  const { results } = await response.json();
+  return results as AnimeList[];
+};
