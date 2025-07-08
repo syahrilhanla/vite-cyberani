@@ -42,7 +42,7 @@ const SuggestionCard = ({
 							{data.totalEpisodes}
 						</span>
 					</div>
-					<p className="invisible md:visible text-xs md:text-base text-slate-200 line-clamp-1 md:line-clamp-3 leading-4 text-ellipsis">
+					<p className="invisible md:visible text-xs md:text-base text-slate-200 line-clamp-1 md:line-clamp-3 leading-6 text-ellipsis">
 						{data.description}
 					</p>
 					<NavLink to={`${data.link}`}>
