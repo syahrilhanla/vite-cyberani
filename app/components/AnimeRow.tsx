@@ -9,6 +9,7 @@ import AnimeCardShowroom from "./AnimeCardShowroom";
 
 import { fetchAnimeList } from "@/lib/api"; // Adjust the import path as necessary
 import AnimeCardSkeleton from "./AnimeCardSkeleton";
+import type { AnimeList } from "@/types/anime.type";
 // import useWindowDimensions from "../utils/useWindowDimensions";
 
 interface Props {
@@ -19,7 +20,7 @@ interface Props {
 }
 
 const AnimeRow = ({ rowTitle, category, animeType, toPage }: Props) => {
-	const [animeData, setAnimeData] = useState([]);
+	const [animeData, setAnimeData] = useState<AnimeList[]>([]);
 	const [loading, setLoading] = useState(true);
 
 	// const { width } = useWindowDimensions();
@@ -28,8 +29,7 @@ const AnimeRow = ({ rowTitle, category, animeType, toPage }: Props) => {
 	const fetchData = async () => {
 		try {
 			console.log("Fetching anime data for category:", category);
-			const { results } = await fetchAnimeList(category);
-			console.log(results);
+			const results = await fetchAnimeList(category);
 
 			setAnimeData(results);
 		} catch (error) {
@@ -45,8 +45,6 @@ const AnimeRow = ({ rowTitle, category, animeType, toPage }: Props) => {
 
 	const slidesPerView =
 		width < 640 ? 2 : width < 768 ? 3 : width < 1024 ? 3 : width < 1280 ? 5 : 5;
-
-	console.log({ loading }, animeData);
 
 	return (
 		<div className="flex flex-col w-[90%] lg:w-[80%] mt-2 text-left font-medium text-slate-200 pb-5 overflow-visible">
