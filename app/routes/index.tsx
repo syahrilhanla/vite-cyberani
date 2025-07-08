@@ -1,8 +1,11 @@
 import AnimeRow from "@/components/AnimeRow";
+import SuggestionHero from "@/components/SuggestionHero";
 
 export default function Home() {
 	return (
 		<>
+			<SuggestionHero />
+
 			<AnimeRow
 				rowTitle={"Top Anime"}
 				category={"most-popular"}
