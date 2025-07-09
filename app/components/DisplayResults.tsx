@@ -16,11 +16,11 @@ const DisplayResults = ({ searchResults, loading }: Props) => {
 				</li>
 			) : searchResults.length > 0 ? (
 				searchResults.map((result) => (
-					<li
-						className="w-full gap-3 py-2 px-4 hover:bg-[#0f2647]/30 duration-400"
-						key={result.title}
+					<NavLink
+						to={`/anime/${result.id}`}
+						className="w-full py-2 px-4 hover:bg-[#0f2647]/30 duration-400"
 					>
-						<NavLink to={`/anime/${result.id}`} className="flex space-x-2">
+						<li className="flex gap-3" key={result.title}>
 							<img
 								src={result.image}
 								alt={result.title}
@@ -29,13 +29,13 @@ const DisplayResults = ({ searchResults, loading }: Props) => {
 							<p className="text-xs lg:text-sm text-slate-200 text-left whitespace-normal text-ellipsis max-w-[12rem]">
 								{result.title}
 							</p>
-						</NavLink>
-					</li>
+						</li>
+					</NavLink>
 				))
 			) : (
 				<div
 					className="grid place-content-center
-               place-items-center h-24 w-full p-4"
+						place-items-center h-24 w-full p-4"
 				>
 					<p className="text-slate-200">No Anime Found</p>
 				</div>
