@@ -2,6 +2,7 @@ import { fetchAnimeDetail } from "@/lib/api";
 import type { Route } from "./+types/anime-detail";
 import AnimeDescription from "@/components/AnimeDescription";
 import type { AnimeDetail } from "@/types/anime.type";
+import StreamingComponent from "@/components/StreamingComponent";
 
 export const loader = async ({ params }: Route.LoaderArgs) => {
 	const animeDetail = await fetchAnimeDetail(params.id);
@@ -36,19 +37,15 @@ const AnimeDetailPage = ({ loaderData }: Route.ComponentProps) => {
 					<AnimeDescription animeData={animeDetail} />
 				</div>
 
-				{/* <div className="order-2 lg:order-2">
-					<VideoComponent
-						title={
-							animeData.type !== "Movie"
-								? `${animeData.title} - Episode ${episode}`
-								: `${animeData.title}`
-						}
-						episodeDetail={episodeDetail}
-						synopsis={animeData.description}
+				<div className="order-2 lg:order-2">
+					<StreamingComponent
+						title={`${animeDetail.title} - Episode ${1}`}
+						episodeDetail={animeDetail.episodes[0]}
+						synopsis={animeDetail.description}
 					/>
 				</div>
 
-				{animeData.type !== "Movie" && (
+				{/* {animeData.type !== "Movie" && (
 					<div className="order-3 lg:order-1">
 						<Episodes animeData={animeData} currentEpisode={episode} />
 					</div>
