@@ -1,28 +1,38 @@
-import type { AnimeList } from "@/types/anime.type";
+import type { AnimeList, AnimeDetail } from "@/types/anime.type";
 
 const BASE_URL = import.meta.env.VITE_API_URL;
 
-export const fetchAnimeList = async (category: string, page = 1) => {
-  const response = await fetch(
+// Helper for GET requests
+const fetchJSON = async <T>(url: string): Promise<T> => {
+  const response = await fetch(url);
+  if (!response.ok) throw new Error(`Fetch error: ${response.status}`);
+  return response.json();
+};
+
+// Fetch anime list by category and page
+export const fetchAnimeList = async (
+  category: string,
+  page = 1
+): Promise<AnimeList[]> => {
+  const { results } = await fetchJSON<{ results: AnimeList[] }>(
     `${BASE_URL}/${category}?page=${page}`
   );
-  const { results } = await response.json();
-  return results as AnimeList[];
+  return results;
 };
 
-
-export const fetchAnimeBySearch = async (searchQuery: string) => {
-  const response = await fetch(
+// Fetch anime list by search query
+export const fetchAnimeBySearch = async (
+  searchQuery: string
+): Promise<AnimeList[]> => {
+  const { results } = await fetchJSON<{ results: AnimeList[] }>(
     `${BASE_URL}/${searchQuery}`
   );
-  const { results } = await response.json();
-  return results as AnimeList[];
+  return results;
 };
 
-export const fetchAnimeDetail = async (animeId: string) => {
-  const response = await fetch(
-    `${BASE_URL}/info?id=${animeId}`
-  );
-  const animeDetail = await response.json();
-  return animeDetail;
+// Fetch detailed anime info
+export const fetchAnimeDetail = async (
+  animeId: string
+): Promise<AnimeDetail> => {
+  return fetchJSON<AnimeDetail>(`${BASE_URL}/info?id=${animeId}`);
 };
