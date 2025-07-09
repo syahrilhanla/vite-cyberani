@@ -4,5 +4,5 @@ export default [
   index("routes/index.tsx"),
 
   route("anime", "routes/anime.tsx"),
-  route("anime/:id", "routes/animeDetail.tsx"),
+  route("anime/:id", "routes/anime-detail.tsx"),
 ] satisfies RouteConfig;
