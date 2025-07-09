@@ -18,3 +18,11 @@ export const fetchAnimeBySearch = async (searchQuery: string) => {
   const { results } = await response.json();
   return results as AnimeList[];
 };
+
+export const fetchAnimeDetail = async (animeId: string) => {
+  const response = await fetch(
+    `${BASE_URL}/info?id=${animeId}`
+  );
+  const animeDetail = await response.json();
+  return animeDetail;
+};
