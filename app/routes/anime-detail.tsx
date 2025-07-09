@@ -1,12 +1,25 @@
 import { fetchAnimeDetail } from "@/lib/api";
 import type { Route } from "./+types/anime-detail";
 
-export const clientLoader = async ({ params }: Route.ClientLoaderArgs) => {
+export const loader = async ({ params }: Route.LoaderArgs) => {
 	const animeDetail = await fetchAnimeDetail(params.id);
 
-	console.log("Anime Detail:", animeDetail);
 	return { animeDetail };
 };
+
+export function meta(loaderData: Route.MetaArgs) {
+	return [
+		{
+			title: loaderData.data?.animeDetail.title
+				? `${loaderData.data?.animeDetail.title} - CyberAni`
+				: "Anime Detail - CyberAni",
+		},
+		{
+			name: "description",
+			content: loaderData.data?.animeDetail.description,
+		},
+	];
+}
 
 const AnimeDetailPage = ({ loaderData }: Route.ComponentProps) => {
 	console.log("Loader Data:", loaderData.animeDetail);
