@@ -11,7 +11,7 @@ const AnimeDescription = ({ animeData }: Props) => {
 	const [expandDescription, setExpandDescription] = useState(false);
 
 	return (
-		<div className="w-full h-fit flex flex-wrap items-start justify-center text-slate-200 bg-[#16213e]/80 backdrop-blur-md rounded-lg shadow-lg p-6">
+		<div className="w-full h-fit flex flex-wrap gap-3 items-start justify-center text-slate-200 bg-[#16213e]/80 backdrop-blur-md rounded-lg shadow-lg p-6">
 			{/* Anime Image */}
 			{animeData.image && (
 				<img
