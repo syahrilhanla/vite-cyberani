@@ -23,14 +23,19 @@ const AnimeDescription = ({ animeData }: Props) => {
 
 			{/* Anime Details */}
 			<div className="p-4 gap-3 grid grid-cols-1 w-full lg:w-auto">
-				{/* <Link to="watch" smooth={true} duration={500}> */}
 				<button
 					className="lg:hidden w-full px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-md
-							hover:scale-105 transition-transform duration-300 font-semibold shadow-md"
+						hover:scale-105 transition-transform duration-300 font-semibold shadow-md"
+					onClick={() => {
+						window.scrollTo({
+							top:
+								document.getElementById("streaming-component")?.offsetTop || 0,
+							behavior: "smooth",
+						});
+					}}
 				>
 					Watch Now
 				</button>
-				{/* </Link> */}
 
 				<a
 					target="_blank"
