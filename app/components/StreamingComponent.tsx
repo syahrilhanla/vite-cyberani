@@ -28,7 +28,10 @@ const StreamingComponent = ({ title, episodeDetail, synopsis }: Props) => {
 	const [showFullSynopsis, setShowFullSynopsis] = useState(false);
 
 	return (
-		<div className="lg:min-h-[360px] mb-12 lg:mb-0 max-w-full lg:max-w-[55dvw] aspect-auto lg:aspect-video">
+		<div
+			id="streaming-component"
+			className="lg:min-h-[360px] mb-12 lg:mb-0 max-w-full lg:max-w-[55dvw] aspect-auto lg:aspect-video"
+		>
 			<h1 className="text-xl font-semibold text-slate-200 mb-4">{title}</h1>
 			{episodeURL ? (
 				<iframe
