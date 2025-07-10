@@ -48,11 +48,13 @@ const AnimeDescription = ({ animeData }: Props) => {
 						Other Names: {animeData.japaneseTitle}
 					</h2>
 				)}
-				<h2 className="text-sm text-slate-300">
+				<h2 className="text-sm text-slate-300 max-h-40 overflow-auto">
 					Synopsis:{" "}
 					<span className={expandDescription ? "" : "line-clamp-1"}>
 						{animeData.description}
 					</span>
+				</h2>
+				<span className="-mt-4 text-left">
 					{animeData.description && animeData.description.length > 120 && (
 						<button
 							className="text-blue-400 hover:underline focus:outline-none text-xs"
@@ -61,7 +63,7 @@ const AnimeDescription = ({ animeData }: Props) => {
 							{expandDescription ? "Show less" : "Read more"}
 						</button>
 					)}
-				</h2>
+				</span>
 				<h2 className="text-sm font-medium text-blue-200">
 					<span className="font-normal">Type</span>: {animeData.type}
 				</h2>
