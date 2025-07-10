@@ -1,3 +1,5 @@
+import { goToEpisode } from "@/lib/anime.slice";
+import { useDispatch } from "react-redux";
 import { NavLink } from "react-router";
 
 interface Props {
@@ -5,14 +7,15 @@ interface Props {
 }
 
 const AnimeCardShowroom = ({ data }: Props) => {
+	const dispatch = useDispatch();
+
 	return (
 		<NavLink to={`/anime/${data.id}`}>
 			<article
 				className="group relative w-fit shadow-lg hover:scale-[1.02] transition-all duration-300 overflow-hidden
 					cursor-pointer rounded-3xl xl:h-[20rem] h-[14rem]"
 				onClick={() => {
-					// dispatch({ type: "anime/selectAnime", payload: data.title });
-					// dispatch({ type: "anime/goToEpisode", payload: 1 });
+					dispatch(goToEpisode(1));
 				}}
 			>
 				{/* Anime Image */}

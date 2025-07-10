@@ -1,5 +1,8 @@
 import { NavLink } from "react-router";
+import { useDispatch } from "react-redux";
+import { goToEpisode } from "@/lib/anime.slice";
 import { BiLoaderAlt } from "react-icons/bi";
+
 import type { AnimeList } from "@/types/anime.type";
 
 interface Props {
@@ -8,6 +11,8 @@ interface Props {
 }
 
 const DisplayResults = ({ searchResults, loading }: Props) => {
+	const dispatch = useDispatch();
+
 	return (
 		<ul className="absolute top-12 left-0 w-full bg-[#0a192f] flex flex-col rounded-lg shadow-lg max-h-80 overflow-y-auto">
 			{loading ? (
@@ -19,6 +24,9 @@ const DisplayResults = ({ searchResults, loading }: Props) => {
 					<NavLink
 						to={`/anime/${result.id}`}
 						className="w-full py-2 px-4 hover:bg-[#0f2647]/30 duration-400"
+						onClick={() => {
+							dispatch(goToEpisode(1));
+						}}
 					>
 						<li className="flex gap-3" key={result.title}>
 							<img
