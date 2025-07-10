@@ -1,11 +1,13 @@
-import AnimeDescription from "@/components/AnimeDescription";
+import { useSelector } from "react-redux";
+
 import Episodes from "@/components/Episodes";
+import AnimeDescription from "@/components/AnimeDescription";
+import StreamingComponent from "@/components/StreamingComponent";
 
 import { fetchAnimeDetail } from "@/lib/api";
 
 import type { Route } from "./+types/anime-detail";
 import type { AnimeDetail } from "@/types/anime.type";
-import { useSelector } from "react-redux";
 import type { RootState } from "@/lib/anime.store";
 
 export const loader = async ({ params }: Route.LoaderArgs) => {
@@ -34,8 +36,6 @@ const AnimeDetailPage = ({ loaderData }: Route.ComponentProps) => {
 		(state: RootState) => state.animeReducer
 	);
 
-	console.log(currentEpisode);
-
 	return (
 		<div
 			className="grid grid-cols-1 lg:grid-cols-[2fr_6fr_3fr] w-full h-auto
@@ -50,11 +50,11 @@ const AnimeDetailPage = ({ loaderData }: Route.ComponentProps) => {
 			</div>
 
 			<div className="order-2 lg:order-2">
-				{/* <StreamingComponent
+				<StreamingComponent
 					title={`${animeDetail.title} - Episode ${currentEpisode}`}
 					episodeDetail={animeDetail.episodes[currentEpisode - 1]}
 					synopsis={animeDetail.description}
-				/> */}
+				/>
 			</div>
 		</div>
 	);
