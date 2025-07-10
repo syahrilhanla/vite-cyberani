@@ -7,6 +7,9 @@ import {
 	ScrollRestoration,
 } from "react-router";
 
+import { Provider } from "react-redux";
+import { store } from "app/lib/anime.store";
+
 import type { Route } from "./+types/root";
 import "./global.css";
 import Navbar from "./components/Navbar";
@@ -55,7 +58,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 				<Links />
 			</head>
 			<body>
-				{children}
+				<Provider store={store}>{children}</Provider>
 				<ScrollRestoration />
 				<Scripts />
 			</body>
