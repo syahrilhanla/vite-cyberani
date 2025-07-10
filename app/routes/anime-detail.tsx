@@ -37,8 +37,8 @@ const AnimeDetailPage = ({ loaderData }: Route.ComponentProps) => {
 
 	return (
 		<div
-			className="grid grid-cols-1 lg:grid-cols-[2fr_7fr_3fr] w-full h-auto lg:h-[90vh]
-					mx-auto px-4 lg:px-14 gap-6 md:gap-8 lg:gap-12 justify-center lg:justify-between"
+			className="grid grid-cols-1 lg:grid-cols-[2fr_6fr_3fr] w-full h-auto
+					mx-auto px-4 lg:px-8 2xl:px-12 gap-6 md:gap-8 justify-center lg:justify-between"
 		>
 			<div className="order-3 lg:order-1">
 				<Episodes animeData={animeDetail} />
