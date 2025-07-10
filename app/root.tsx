@@ -7,6 +7,9 @@ import {
 	ScrollRestoration,
 } from "react-router";
 
+import { Provider } from "react-redux";
+import { store } from "app/lib/anime.store";
+
 import type { Route } from "./+types/root";
 import "./global.css";
 import Navbar from "./components/Navbar";
@@ -30,13 +33,17 @@ export const links: Route.LinksFunction = () => [
 		rel: "stylesheet",
 		href: "https://fonts.googleapis.com/css2?family=Orbitron&display=swap",
 	},
+	{
+		rel: "stylesheet",
+		href: "https://fonts.googleapis.com/css2?family=Inter&display=swap",
+	},
 ];
 
 export default function App() {
 	return (
 		<>
 			<Navbar />
-			<div className="w-full flex flex-col items-center min-h-dvh top-[10vh] bg-[#0a192f] absolute">
+			<div className="w-full flex flex-col items-center min-h-dvh top-[10vh] bg-[#0a192f] absolute font-[Inter]">
 				<Outlet />
 			</div>
 		</>
@@ -55,7 +62,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 				<Links />
 			</head>
 			<body>
-				{children}
+				<Provider store={store}>{children}</Provider>
 				<ScrollRestoration />
 				<Scripts />
 			</body>

@@ -11,7 +11,7 @@ const AnimeDescription = ({ animeData }: Props) => {
 	const [expandDescription, setExpandDescription] = useState(false);
 
 	return (
-		<div className="w-full h-fit flex flex-wrap gap-3 items-start justify-center text-slate-200 bg-[#16213e]/80 backdrop-blur-md rounded-lg shadow-lg p-6">
+		<div className="w-full h-fit flex flex-wrap gap-2 items-start justify-center text-slate-200 bg-[#16213e]/80 backdrop-blur-md rounded-lg shadow-lg p-6">
 			{/* Anime Image */}
 			{animeData.image && (
 				<img
@@ -22,15 +22,20 @@ const AnimeDescription = ({ animeData }: Props) => {
 			)}
 
 			{/* Anime Details */}
-			<div className="p-4 gap-3 grid grid-cols-1 w-full lg:w-auto">
-				{/* <Link to="watch" smooth={true} duration={500}> */}
+			<div className="p-4 gap-2 md:gap-3 grid grid-cols-1 w-full lg:w-auto">
 				<button
 					className="lg:hidden w-full px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-md
-							hover:scale-105 transition-transform duration-300 font-semibold shadow-md"
+						hover:scale-105 transition-transform duration-300 font-semibold shadow-md"
+					onClick={() => {
+						window.scrollTo({
+							top:
+								document.getElementById("streaming-component")?.offsetTop || 0,
+							behavior: "smooth",
+						});
+					}}
 				>
 					Watch Now
 				</button>
-				{/* </Link> */}
 
 				<a
 					target="_blank"
@@ -48,11 +53,13 @@ const AnimeDescription = ({ animeData }: Props) => {
 						Other Names: {animeData.japaneseTitle}
 					</h2>
 				)}
-				<h2 className="text-sm text-slate-300">
+				<h2 className="text-sm text-slate-300 max-h-36 overflow-auto">
 					Synopsis:{" "}
 					<span className={expandDescription ? "" : "line-clamp-1"}>
 						{animeData.description}
 					</span>
+				</h2>
+				<span className="-mt-2 text-left">
 					{animeData.description && animeData.description.length > 120 && (
 						<button
 							className="text-blue-400 hover:underline focus:outline-none text-xs"
@@ -61,7 +68,7 @@ const AnimeDescription = ({ animeData }: Props) => {
 							{expandDescription ? "Show less" : "Read more"}
 						</button>
 					)}
-				</h2>
+				</span>
 				<h2 className="text-sm font-medium text-blue-200">
 					<span className="font-normal">Type</span>: {animeData.type}
 				</h2>

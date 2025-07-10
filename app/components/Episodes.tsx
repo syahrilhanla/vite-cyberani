@@ -1,20 +1,25 @@
-// import { goToEpisode, nextEpisode, prevEpisode } from "../redux/animeSlice";
-
-import type { AnimeDetail } from "@/types/anime.type";
+import { useDispatch, useSelector } from "react-redux";
 import { FaPlay } from "react-icons/fa";
 import {
 	TbPlayerTrackNextFilled,
 	TbPlayerTrackPrevFilled,
 } from "react-icons/tb";
+
 import GoToEpisodeForm from "./GoToEpisodeForm";
+import { goToEpisode, nextEpisode, prevEpisode } from "@/lib/anime.slice";
+
+import type { RootState } from "@/lib/anime.store";
+import type { AnimeDetail } from "@/types/anime.type";
 
 interface Props {
 	animeData: AnimeDetail;
-	currentEpisode: number;
 }
 
-const Episodes = ({ animeData, currentEpisode }: Props) => {
-	// const dispatch = useDispatch();
+const Episodes = ({ animeData }: Props) => {
+	const dispatch = useDispatch();
+	const { currentEpisode } = useSelector(
+		(state: RootState) => state.animeReducer
+	);
 
 	const NavButton = () => (
 		<div className="flex gap-2 w-full justify-center">
@@ -22,14 +27,14 @@ const Episodes = ({ animeData, currentEpisode }: Props) => {
 				className="flex items-center gap-2 px-4 py-2
 					bg-inherit
 				rounded-lg text-white font-semibold"
-				// onClick={() => dispatch(prevEpisode())}
+				onClick={() => dispatch(prevEpisode())}
 			>
 				<TbPlayerTrackPrevFilled className="mt-0.5" />
 				Prev
 			</button>
 			<button
 				className="flex items-center gap-2 px-4 py-2 rounded-lg text-white font-semibold"
-				// onClick={() => dispatch(nextEpisode())}
+				onClick={() => dispatch(nextEpisode())}
 			>
 				Next
 				<TbPlayerTrackNextFilled className="mt-0.5" />
@@ -51,20 +56,20 @@ const Episodes = ({ animeData, currentEpisode }: Props) => {
 			</div>
 			<div className="flex-1 overflow-y-auto px-1 custom-scrollbar">
 				{animeData.episodes.length > 0 ? (
-					<div className="space-y-2">
+					<ul className="space-y-2">
 						{animeData.episodes.map((episode) => (
-							<button
+							<li
 								key={episode.number}
 								className="w-full justify-between even:bg-blue-900/10 odd:bg-blue-700/30 flex items-center gap-3 px-4 py-3 text-blue-100 font-medium shadow duration-300 group"
-								// onClick={() => dispatch(goToEpisode(episode.number))}
+								onClick={() => dispatch(goToEpisode(episode.number))}
 							>
 								<span className="text-base">Episode {episode.number}</span>
 								{currentEpisode === episode.number && (
 									<FaPlay className="text-blue-400 group-hover:text-blue-600 transition duration-200" />
 								)}
-							</button>
+							</li>
 						))}
-					</div>
+					</ul>
 				) : (
 					<div className="flex flex-row gap-2 w-full justify-center rounded-lg bg-blue-900/60 text-blue-200 my-2 py-4">
 						<h4 className="text-lg font-normal">No Episode</h4>
