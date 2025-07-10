@@ -33,13 +33,17 @@ export const links: Route.LinksFunction = () => [
 		rel: "stylesheet",
 		href: "https://fonts.googleapis.com/css2?family=Orbitron&display=swap",
 	},
+	{
+		rel: "stylesheet",
+		href: "https://fonts.googleapis.com/css2?family=Inter&display=swap",
+	},
 ];
 
 export default function App() {
 	return (
 		<>
 			<Navbar />
-			<div className="w-full flex flex-col items-center min-h-dvh top-[10vh] bg-[#0a192f] absolute">
+			<div className="w-full flex flex-col items-center min-h-dvh top-[10vh] bg-[#0a192f] absolute font-[Inter]">
 				<Outlet />
 			</div>
 		</>
