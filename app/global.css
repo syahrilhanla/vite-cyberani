@@ -10,6 +10,9 @@
 		@apply px-2;
 		@apply cursor-pointer;
 	}
+	button {
+		@apply cursor-pointer;
+	}
 }
 
 html,
