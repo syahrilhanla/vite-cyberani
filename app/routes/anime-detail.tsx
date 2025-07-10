@@ -36,26 +36,24 @@ const AnimeDetailPage = ({ loaderData }: Route.ComponentProps) => {
 	);
 
 	return (
-		<div>
-			<div
-				className="grid grid-cols-1 lg:grid-cols-[2fr_7fr_3fr] w-full h-auto lg:h-[90vh]
+		<div
+			className="grid grid-cols-1 lg:grid-cols-[2fr_7fr_3fr] w-full h-auto lg:h-[90vh]
 					mx-auto px-4 lg:px-14 gap-6 md:gap-8 lg:gap-12 justify-center lg:justify-between"
-			>
-				<div className="order-3 lg:order-1">
-					<Episodes animeData={animeDetail} />
-				</div>
+		>
+			<div className="order-3 lg:order-1">
+				<Episodes animeData={animeDetail} />
+			</div>
 
-				<div className="order-1 lg:order-3 md:col-span-2 lg:col-span-1">
-					<AnimeDescription animeData={animeDetail} />
-				</div>
+			<div className="order-1 lg:order-3 md:col-span-2 lg:col-span-1">
+				<AnimeDescription animeData={animeDetail} />
+			</div>
 
-				<div className="order-2 lg:order-2">
-					<StreamingComponent
-						title={`${animeDetail.title} - Episode ${currentEpisode}`}
-						episodeDetail={animeDetail.episodes[currentEpisode - 1]}
-						synopsis={animeDetail.description}
-					/>
-				</div>
+			<div className="order-2 lg:order-2">
+				<StreamingComponent
+					title={`${animeDetail.title} - Episode ${currentEpisode}`}
+					episodeDetail={animeDetail.episodes[currentEpisode - 1]}
+					synopsis={animeDetail.description}
+				/>
 			</div>
 		</div>
 	);
