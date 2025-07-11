@@ -1,7 +1,7 @@
 export enum AnimeCategory {
-  POPULAR = "popular",
-  LATEST = "latest",
-  TRENDING = "trending",
+  POPULAR = "popular", // most popular anime
+  LATEST = "latest", // recent-episodes
+  TRENDING = "trending", // top-airing
   MOVIES = "movies",
   GENRES = "genres",
 }

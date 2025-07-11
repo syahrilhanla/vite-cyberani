@@ -9,17 +9,18 @@ import AnimeCardShowroom from "./AnimeCardShowroom";
 
 import { fetchAnimeList } from "@/lib/api"; // Adjust the import path as necessary
 import AnimeCardSkeleton from "./AnimeCardSkeleton";
+import { APIEndpoint } from "@/enum/anime.enum"; // Adjust the import path as necessary
+
 import type { AnimeList } from "@/types/anime.type";
 // import useWindowDimensions from "../utils/useWindowDimensions";
 
 interface Props {
 	rowTitle: string;
-	category: string;
-	animeType?: string; // Optional, if not used
+	category: APIEndpoint;
 	toPage: string;
 }
 
-const AnimeRow = ({ rowTitle, category, animeType, toPage }: Props) => {
+const AnimeRow = ({ rowTitle, category, toPage }: Props) => {
 	const [animeData, setAnimeData] = useState<AnimeList[]>([]);
 	const [loading, setLoading] = useState(true);
 
@@ -28,8 +29,7 @@ const AnimeRow = ({ rowTitle, category, animeType, toPage }: Props) => {
 
 	const fetchData = async () => {
 		try {
-			console.log("Fetching anime data for category:", category);
-			const results = await fetchAnimeList(category);
+			const { results } = await fetchAnimeList(category);
 
 			setAnimeData(results);
 		} catch (error) {
@@ -38,7 +38,7 @@ const AnimeRow = ({ rowTitle, category, animeType, toPage }: Props) => {
 			setLoading(false);
 		}
 	};
-	// fetch data when initializing component
+
 	useEffect(() => {
 		fetchData();
 	}, []);
