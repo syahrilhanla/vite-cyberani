@@ -1,4 +1,4 @@
-import type { AnimeCategory } from "@/enum/anime.enum";
+import type { APIEndpoint } from "@/enum/anime.enum";
 import type { AnimeList, AnimeDetail } from "@/types/anime.type";
 
 const BASE_URL = import.meta.env.VITE_API_URL;
@@ -12,7 +12,7 @@ const fetchJSON = async <T>(url: string): Promise<T> => {
 
 // Fetch anime list by category and page
 export const fetchAnimeList = async (
-  category: AnimeCategory,
+  category: APIEndpoint,
   page = 1
 ): Promise<{ results: AnimeList[]; totalPages: number }> => {
   const { results, totalPages } = await fetchJSON<{ results: AnimeList[]; totalPages: number }>(

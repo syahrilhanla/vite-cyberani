@@ -1,6 +1,9 @@
 import AnimeRow from "@/components/AnimeRow";
 import SuggestionHero from "@/components/SuggestionHero";
 
+// TODO:
+// 1. Adjust category to use enum APIEndpoint
+
 export default function Home() {
 	return (
 		<>
@@ -8,7 +11,7 @@ export default function Home() {
 
 			<AnimeRow
 				rowTitle={"Top Anime"}
-				category={"most-popular"}
+				category={"most"}
 				animeType={"title"}
 				toPage={"popular"}
 				key={"popular"}
