@@ -5,5 +5,6 @@ export default [
 
   route("anime", "routes/anime.tsx"),
   route("anime/:id", "routes/anime-detail.tsx"),
+  route("genre", "routes/genre.tsx"),
   route(":category", "routes/category.tsx"),
 ] satisfies RouteConfig;
