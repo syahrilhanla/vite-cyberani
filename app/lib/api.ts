@@ -37,3 +37,12 @@ export const fetchAnimeDetail = async (
 ): Promise<AnimeDetail> => {
   return fetchJSON<AnimeDetail>(`${BASE_URL}/info?id=${animeId}`);
 };
+
+// Fetch genres
+export const fetchAnimeGenres = async (): Promise<string[]> => {
+  const genres = await fetchJSON<string[]>(
+    `${BASE_URL}/genre/list`
+  );
+
+  return genres;
+}
