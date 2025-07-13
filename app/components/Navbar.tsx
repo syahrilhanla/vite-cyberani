@@ -34,7 +34,7 @@ const Navbar = () => {
 						<NavLink to={"/trending"}>Trending</NavLink>
 					</li>
 					<li>
-						<NavLink to={"/genres"}>Genre</NavLink>
+						<NavLink to={"/genre"}>Genre</NavLink>
 					</li>
 					<li>
 						<NavLink to={"/movies"}>Movies</NavLink>

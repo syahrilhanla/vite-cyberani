@@ -7,7 +7,6 @@ import StreamingComponent from "@/components/StreamingComponent";
 import { fetchAnimeDetail } from "@/lib/api";
 
 import type { Route } from "./+types/anime-detail";
-import type { AnimeDetail } from "@/types/anime.type";
 import type { RootState } from "@/lib/anime.store";
 
 export const loader = async ({ params }: Route.LoaderArgs) => {
@@ -29,7 +28,7 @@ export function meta(loaderData: Route.MetaArgs) {
 }
 
 const AnimeDetailPage = ({ loaderData }: Route.ComponentProps) => {
-	const { animeDetail } = loaderData as { animeDetail: AnimeDetail };
+	const { animeDetail } = loaderData;
 	const { currentEpisode } = useSelector(
 		(state: RootState) => state.animeReducer
 	);
