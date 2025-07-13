@@ -1,5 +1,6 @@
 import AnimeRow from "@/components/AnimeRow";
 import SuggestionHero from "@/components/SuggestionHero";
+import { APIEndpoint } from "@/enum/anime.enum";
 
 // TODO:
 // 1. Adjust category to use enum APIEndpoint
@@ -11,32 +12,28 @@ export default function Home() {
 
 			<AnimeRow
 				rowTitle={"Top Anime"}
-				category={"most"}
-				animeType={"title"}
+				category={APIEndpoint.MOST_POPULAR}
 				toPage={"popular"}
 				key={"popular"}
 			/>
 
 			<AnimeRow
 				rowTitle={"Recent Episodes"}
-				category={"recent-episodes"}
-				animeType={"title"}
+				category={APIEndpoint.RECENT_EPISODES}
 				toPage={"latest"}
 				key={"latest"}
 			/>
 
 			<AnimeRow
 				rowTitle={"Top Airing"}
-				category={"top-airing"}
-				animeType={"title"}
+				category={APIEndpoint.TOP_AIRING}
 				toPage={"trending"}
 				key={"trending"}
 			/>
 
 			<AnimeRow
 				rowTitle={"Anime Movies"}
-				category={"anime-movies"}
-				animeType={"title"}
+				category={APIEndpoint.MOVIES}
 				toPage={"movies"}
 				key={"movies"}
 			/>

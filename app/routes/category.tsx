@@ -25,26 +25,43 @@ const Category = () => {
 	const pageInfo = (category: string | undefined) => {
 		switch (category) {
 			case AnimeCategory.POPULAR:
-				return "Most Popular Anime";
+				return {
+					title: "Most Popular Anime",
+					endpoint: APIEndpoint.MOST_POPULAR,
+				};
 			case AnimeCategory.LATEST:
-				return "Latest Episodes";
+				return {
+					title: "Recent Episodes",
+					endpoint: APIEndpoint.RECENT_EPISODES,
+				};
 			case AnimeCategory.TRENDING:
-				return "Trending Anime";
+				return {
+					title: "Top Airing Anime",
+					endpoint: APIEndpoint.TOP_AIRING,
+				};
 			case AnimeCategory.MOVIES:
-				return "Anime Movies";
+				return {
+					title: "Anime Movies",
+					endpoint: APIEndpoint.MOVIES,
+				};
 			case AnimeCategory.GENRES:
-				return "Anime by Genre";
+				return {
+					title: "Anime Genres",
+					endpoint: APIEndpoint.GENRE,
+				};
 			default:
-				return "Anime Category";
+				return {
+                    title: "Top Airing Anime",
+                    endpoint: APIEndpoint.TOP_AIRING,
+                };
 		}
 	};
 
 	const fetchData = useCallback(async () => {
 		try {
 			try {
-				const { results, totalPages } = await fetchAnimeList(
-					APIEndpoint.MOST_POPULAR, // change to dynamic endpoint based on category
-					currentPage
+				const {endpoint} = pageInfo(category);
+				const { results, totalPages } = await fetchAnimeList( endpoint  , currentPage
 				);
 
 				setAnimeList(results);
@@ -58,7 +75,7 @@ const Category = () => {
 		} finally {
 			setLoading(false);
 		}
-	}, [category, currentPage]);
+	}, [category]);
 
 	useEffect(() => {
 		fetchData();
@@ -69,7 +86,7 @@ const Category = () => {
 			<div className="w-[90%] lg:w-full p-3 my-6 flex flex-col justify-center items-center">
 				<div className="lg:w-[70%] ml-3 mb-4">
 					<h1 className="text-left text-slate-200 text-3xl font-semibold">
-						{pageInfo(category)}
+						{pageInfo(category).title}
 					</h1>
 				</div>
 				<div
