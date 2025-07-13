@@ -90,7 +90,10 @@ const AnimeDescription = ({ animeData }: Props) => {
 					<div className="flex flex-wrap gap-2">
 						<h2 className="text-sm font-normal text-blue-200">Genres:</h2>
 						{animeData.genres.map((genre) => (
-							<NavLink to={`/genre/${genre.toLowerCase()}`} key={genre}>
+							<NavLink
+								to={`/genre/${genre.replaceAll(" ", "-").toLowerCase()}`}
+								key={genre}
+							>
 								<span className="px-3 py-1 bg-blue-700/50 text-white rounded-full text-xs shadow-md">
 									{genre}
 								</span>
