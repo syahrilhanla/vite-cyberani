@@ -1,8 +1,9 @@
+import type { AnimeEpisode } from "@/types/anime.type";
 import { useEffect, useState } from "react";
 
 interface Props {
 	title: string;
-	episodeDetail: { id?: string };
+	episodeDetail: AnimeEpisode;
 	synopsis?: string;
 }
 
@@ -32,7 +33,11 @@ const StreamingComponent = ({ title, episodeDetail, synopsis }: Props) => {
 			id="streaming-component"
 			className="lg:min-h-[360px] mb-12 lg:mb-0 max-w-full lg:max-w-[55dvw] aspect-auto lg:aspect-video"
 		>
-			<h1 className="text-xl font-semibold text-slate-200 mb-4">{title}</h1>
+			<section className="flex flex-col gap-0.5 mb-4">
+				<h1 className="text-xl font-semibold text-slate-200">{title}</h1>
+				<h2 className="text-slate-400 text-base">{episodeDetail.title}</h2>
+			</section>
+
 			{episodeURL ? (
 				<iframe
 					allowFullScreen={true}
