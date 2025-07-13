@@ -60,10 +60,14 @@ const Episodes = ({ animeData }: Props) => {
 						{animeData.episodes.map((episode) => (
 							<li
 								key={episode.number}
-								className="w-full justify-between even:bg-blue-900/10 odd:bg-blue-700/30 flex items-center gap-3 px-4 py-3 text-blue-100 font-medium shadow duration-300 group"
+								className="w-full justify-between even:bg-blue-900/10 odd:bg-blue-700/30 flex items-center gap-3 px-2 py-3 text-blue-100 shadow duration-300 group"
 								onClick={() => dispatch(goToEpisode(episode.number))}
+								title={`Episode ${episode.number} - ${episode.title}`}
 							>
-								<span className="text-base">Episode {episode.number}</span>
+								<p className="text-sm w-full flex gap-3">
+									<span>{episode.number}</span>
+									<span className="line-clamp-1">{episode.title}</span>
+								</p>
 								{currentEpisode === episode.number && (
 									<FaPlay className="text-blue-400 group-hover:text-blue-600 transition duration-200" />
 								)}
