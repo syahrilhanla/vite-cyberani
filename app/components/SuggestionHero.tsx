@@ -11,6 +11,7 @@ import SuggestionCard from "./SuggestionCard";
 import { fetchAnimeList } from "@/lib/api";
 
 import type { SuggestionAnime } from "@/types/anime.type";
+import { APIEndpoint } from "@/enum/anime.enum";
 
 const HeroSkeleton = () => (
 	<div className="h-full w-full bg-gradient-to-r from-slate-800 to-slate-700 animate-pulse rounded-lg flex flex-col justify-center items-start p-6">
@@ -29,7 +30,7 @@ const Suggestion = () => {
 		const fetchTopAiring = async () => {
 			setLoading(true);
 
-			const results = await fetchAnimeList("suggestions");
+			const { results } = await fetchAnimeList(APIEndpoint.SUGGESTIONS);
 
 			setTopAiringList(
 				results.map((anime: any) => ({
