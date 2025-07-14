@@ -1,16 +1,23 @@
 import { fetchAnimeByGenre } from "@/lib/api";
-import type { Route } from "./+types/genre-detail";
+
 import AnimeCardShowroom from "@/components/AnimeCardShowroom";
 import Pagination from "@/components/Pagination";
 
-export const loader = async ({ params }: Route.LoaderArgs) => {
+import type { Route } from "./+types/genre-detail";
+
+// SSR loader function to fetch anime by genre
+export const loader = async ({ params, request }: Route.LoaderArgs) => {
 	const { genre } = params;
+	const page = new URL(request.url).searchParams.get("page") || "1";
 
 	if (!genre) {
 		throw new Response("Genre not found", { status: 404 });
 	}
 
-	const { results, totalPages } = await fetchAnimeByGenre(genre);
+	const { results, totalPages } = await fetchAnimeByGenre(
+		genre,
+		parseInt(page)
+	);
 
 	return { animeList: results, totalPages };
 };
@@ -37,11 +44,7 @@ const GenreDetail = ({ loaderData, params }: Route.ComponentProps) => {
 					))}
 			</div>
 
-			<Pagination
-				currentPage={1}
-				setCurrentPage={() => {}}
-				totalPages={totalPages}
-			/>
+			<Pagination totalPages={totalPages} />
 		</div>
 	);
 };
