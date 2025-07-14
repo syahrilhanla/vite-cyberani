@@ -2,9 +2,6 @@ import AnimeRow from "@/components/AnimeRow";
 import SuggestionHero from "@/components/SuggestionHero";
 import { APIEndpoint } from "@/enum/anime.enum";
 
-// TODO:
-// 1. Adjust category to use enum APIEndpoint
-
 export default function Home() {
 	return (
 		<>
