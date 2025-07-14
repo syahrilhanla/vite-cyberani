@@ -34,20 +34,23 @@ const Genre = ({ loaderData }: Route.ComponentProps) => {
    mt-2 text-left font-medium text-slate-100"
 				>
 					{genres &&
-						genres.map((genre, index) => (
-							<p
-								key={genre}
-								className={`${
-									colors[index % colors.length]
-								} w-fit hover:underline cursor-pointer capitalize`}
-							>
-								<NavLink
-									to={`/genre/${genre.replaceAll(" ", "-").toLowerCase()}`}
+						genres.map((genre, index) => {
+							const genreLink =
+								genre === "martial arts"
+									? "marial-arts" // handle special case for martial arts, typo by Hianime
+									: genre.replaceAll(" ", "-").toLowerCase();
+
+							return (
+								<p
+									key={genre}
+									className={`${
+										colors[index % colors.length]
+									} w-fit hover:underline cursor-pointer capitalize`}
 								>
-									{genre}
-								</NavLink>
-							</p>
-						))}
+									<NavLink to={`/genre/${genreLink}`}>{genre}</NavLink>
+								</p>
+							);
+						})}
 				</div>
 			</div>
 		</>
