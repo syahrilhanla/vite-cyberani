@@ -1,3 +1,5 @@
+import { useSearchParams } from "react-router";
+
 import {
 	MdKeyboardDoubleArrowRight,
 	MdKeyboardDoubleArrowLeft,
@@ -6,30 +8,29 @@ import {
 } from "react-icons/md";
 
 interface PaginationProps {
-	currentPage: number;
-	setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 	totalPages: number;
 }
 
-const Pagination = ({
-	currentPage,
-	setCurrentPage,
-	totalPages,
-}: PaginationProps) => {
+const Pagination = ({ totalPages }: PaginationProps) => {
+	const [searchParams, setSearchParams] = useSearchParams();
+	let currentPage = searchParams.get("page")
+		? parseInt(searchParams.get("page")!)
+		: 1;
+
 	const handlePrev = () => {
 		if (currentPage > 1) {
-			setCurrentPage((prevState) => prevState - 1);
+			setSearchParams({ page: String(currentPage - 1) });
 		}
 	};
 
 	const handleNext = () => {
 		if (currentPage < totalPages) {
-			setCurrentPage((prevState) => prevState + 1);
+			setSearchParams({ page: String(currentPage + 1) });
 		}
 	};
 
 	const handlePageClick = (page: number) => {
-		setCurrentPage(page);
+		setSearchParams({ page: String(page) });
 	};
 
 	const generatePageNumbers = () => {
