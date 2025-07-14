@@ -18,10 +18,6 @@ const Category = () => {
 	const [loading, setLoading] = useState(true);
 	const [totalPages, setTotalPages] = useState(0);
 
-	// TODO:
-	// 1. return title and endpoint for each category in pageInfo function
-	// 2. update fetchData to use dynamic endpoint
-
 	const pageInfo = (category: string | undefined) => {
 		switch (category) {
 			case AnimeCategory.POPULAR:
@@ -51,17 +47,19 @@ const Category = () => {
 				};
 			default:
 				return {
-                    title: "Top Airing Anime",
-                    endpoint: APIEndpoint.TOP_AIRING,
-                };
+					title: "Top Airing Anime",
+					endpoint: APIEndpoint.TOP_AIRING,
+				};
 		}
 	};
 
 	const fetchData = useCallback(async () => {
 		try {
 			try {
-				const {endpoint} = pageInfo(category);
-				const { results, totalPages } = await fetchAnimeList( endpoint  , currentPage
+				const { endpoint } = pageInfo(category);
+				const { results, totalPages } = await fetchAnimeList(
+					endpoint,
+					currentPage
 				);
 
 				setAnimeList(results);
@@ -117,13 +115,7 @@ const Category = () => {
 					</div>
 				)}
 
-				{loading ? null : (
-					<Pagination
-						totalPages={totalPages}
-						currentPage={currentPage}
-						setCurrentPage={setCurrentPage}
-					/>
-				)}
+				{loading ? null : <Pagination totalPages={totalPages} />}
 			</div>
 		</>
 	);

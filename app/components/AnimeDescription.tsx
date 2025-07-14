@@ -1,7 +1,9 @@
-import type { AnimeDetail } from "@/types/anime.type";
+import { NavLink } from "react-router";
 import { useState } from "react";
 
 import { SiMyanimelist } from "react-icons/si";
+
+import type { AnimeDetail } from "@/types/anime.type";
 
 interface Props {
 	animeData: AnimeDetail;
@@ -88,12 +90,14 @@ const AnimeDescription = ({ animeData }: Props) => {
 					<div className="flex flex-wrap gap-2">
 						<h2 className="text-sm font-normal text-blue-200">Genres:</h2>
 						{animeData.genres.map((genre) => (
-							<span
+							<NavLink
+								to={`/genre/${genre.replaceAll(" ", "-").toLowerCase()}`}
 								key={genre}
-								className="px-3 py-1 bg-blue-700/50 text-white rounded-full text-xs shadow-md"
 							>
-								{genre}
-							</span>
+								<span className="px-3 py-1 bg-blue-700/50 text-white rounded-full text-xs shadow-md">
+									{genre}
+								</span>
+							</NavLink>
 						))}
 					</div>
 				)}

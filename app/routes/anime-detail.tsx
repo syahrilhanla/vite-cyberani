@@ -7,7 +7,6 @@ import StreamingComponent from "@/components/StreamingComponent";
 import { fetchAnimeDetail } from "@/lib/api";
 
 import type { Route } from "./+types/anime-detail";
-import type { AnimeDetail } from "@/types/anime.type";
 import type { RootState } from "@/lib/anime.store";
 
 export const loader = async ({ params }: Route.LoaderArgs) => {
@@ -19,9 +18,7 @@ export const loader = async ({ params }: Route.LoaderArgs) => {
 export function meta(loaderData: Route.MetaArgs) {
 	return [
 		{
-			title: loaderData.data?.animeDetail.title
-				? `${loaderData.data?.animeDetail.title} - CyberAni`
-				: "Anime Detail - CyberAni",
+			title: `${loaderData.data?.animeDetail.title} - CyberAni`,
 		},
 		{
 			name: "description",
@@ -31,7 +28,7 @@ export function meta(loaderData: Route.MetaArgs) {
 }
 
 const AnimeDetailPage = ({ loaderData }: Route.ComponentProps) => {
-	const { animeDetail } = loaderData as { animeDetail: AnimeDetail };
+	const { animeDetail } = loaderData;
 	const { currentEpisode } = useSelector(
 		(state: RootState) => state.animeReducer
 	);
@@ -39,7 +36,7 @@ const AnimeDetailPage = ({ loaderData }: Route.ComponentProps) => {
 	return (
 		<div
 			className="grid grid-cols-1 lg:grid-cols-[2fr_6fr_3fr] w-full h-auto
-					mx-auto px-4 lg:px-8 2xl:px-12 gap-6 md:gap-8 justify-center lg:justify-between"
+				mx-auto px-4 lg:px-6 2xl:px-12 gap-6 md:gap-4 2xl:gap-8"
 		>
 			<div className="order-3 lg:order-1">
 				<Episodes animeData={animeDetail} />
