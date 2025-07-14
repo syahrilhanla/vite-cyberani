@@ -46,3 +46,14 @@ export const fetchAnimeGenres = async (): Promise<string[]> => {
 
   return genres;
 }
+
+// Fetch anime by genre
+export const fetchAnimeByGenre = async (
+  genre: string,
+  page = 1
+): Promise<AnimeList[]> => {
+  const { results } = await fetchJSON<{ results: AnimeList[] }>(
+    `${BASE_URL}/genre/${genre}?page=${page}`
+  );
+  return results;
+};
