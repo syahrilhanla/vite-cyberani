@@ -12,15 +12,15 @@ const SuggestionCard = ({ spotlight }: Props) => {
 	return (
 		<div className=" text-gray-300 flex justify-center min-w-full">
 			<div
-				className="grid grid-cols-[5fr_4fr] md:grid-cols-[4fr_6fr] w-full h-64 md:h-[60dvh] overflow-hidden 
-				bg-[#0a192f] inset-shadow-sm
+				className="shadow-[-70px 21px 124px -15px rgba(0,0,0,0.77) ] grid grid-cols-[5fr_4fr] md:grid-cols-[4fr_6fr] w-full h-64 md:h-[60dvh] 
+				bg-[#0a192f] hover:cursor-grab
 				group-hover:scale-105 group-hover:shadow-slate-800/70 transition-all duration-300"
 			>
 				<div className="relative px-4 md:px-12 z-10 flex flex-col gap-4 items-start justify-center h-full">
 					<h2 className="text-xl md:text-4xl font-bold text-slate-200">
 						{spotlight.title}
 					</h2>
-					<div className="text-slate-200 flex gap-4">
+					<div className="text-slate-200 flex gap-5">
 						<span
 							className="flex items-center text-sm md:text-base"
 							title="Release Date"
