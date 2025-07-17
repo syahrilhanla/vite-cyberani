@@ -1,8 +1,7 @@
-// import useWindowDimensions from "../utils/useWindowDimensions";
+import { useWindowSize } from "usehooks-ts";
 
 const AnimeCardSkeleton = () => {
-	// const { width } = useWindowDimensions();
-	const width = 1281; // Fixed width for testing purposes
+	const { width } = useWindowSize();
 
 	const slidesPerView =
 		width < 640 ? 2 : width < 768 ? 3 : width < 1024 ? 3 : width < 1280 ? 5 : 5;

@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { useEffect, useRef, useState } from "react";
+import { Swiper, SwiperSlide, type SwiperRef } from "swiper/react";
 import { Navigation, Autoplay, Pagination } from "swiper/modules";
 
 import "swiper/css";
@@ -8,10 +8,10 @@ import "swiper/css/pagination";
 import "swiper/css/autoplay";
 
 import SuggestionCard from "./SuggestionCard";
-import { fetchAnimeList } from "@/lib/api";
+import { fetchSpotlightAnime } from "@/lib/api";
 
 import type { SuggestionAnime } from "@/types/anime.type";
-import { APIEndpoint } from "@/enum/anime.enum";
+import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 
 const HeroSkeleton = () => (
 	<div className="h-full w-full bg-gradient-to-r from-slate-800 to-slate-700 animate-pulse rounded-lg flex flex-col justify-center items-start p-6">
@@ -23,39 +23,37 @@ const HeroSkeleton = () => (
 );
 
 const Suggestion = () => {
-	const [topAiringList, setTopAiringList] = useState<SuggestionAnime[]>([]);
+	const [spotlights, setSpotlights] = useState<SuggestionAnime[]>([]);
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
-		const fetchTopAiring = async () => {
+		const fetchSpotlight = async () => {
 			setLoading(true);
 
-			const { results } = await fetchAnimeList(APIEndpoint.SUGGESTIONS);
+			const spotlights = await fetchSpotlightAnime();
 
-			setTopAiringList(
-				results.map((anime: any) => ({
-					imgURL: anime.image,
-					yearRelease: anime.season,
-					title: anime.title,
-					link: `/anime/${anime.id}`,
-					genre: anime.genres.join(", "),
-					season: anime.season,
-					type: anime.type,
-					description: anime.description,
-					totalEpisodes: anime.totalEpisodes,
-				}))
-			);
-
+			setSpotlights(spotlights);
 			setLoading(false);
 		};
 
-		fetchTopAiring();
+		fetchSpotlight();
 	}, []);
 
+	// Create a ref for the Swiper instance navigation
+	const swiperRef = useRef<SwiperRef>(null);
+
+	const handlePrev = () => {
+		if (swiperRef.current) swiperRef.current.swiper.slidePrev();
+	};
+
+	const handleNext = () => {
+		if (swiperRef.current) swiperRef.current.swiper.slideNext();
+	};
+
 	return (
-		<div className="w-[95%] mb-7">
+		<div className="w-full mb-7">
 			{loading ? (
-				<div className="flex justify-center items-center h-[20dvh] lg:h-[30dvh] xl:h-[50dvh] text-slate-200">
+				<div className="flex justify-center items-center h-[20dvh] lg:h-[50dvh] text-slate-200">
 					<HeroSkeleton />
 				</div>
 			) : (
@@ -80,20 +78,26 @@ const Suggestion = () => {
 					speed={500}
 					rewind={true}
 				>
-					{topAiringList.map((data: any) => (
-						<SwiperSlide key={data.title}>
-							<SuggestionCard data={data} />
+					{spotlights.map((spotlight) => (
+						<SwiperSlide key={spotlight.title}>
+							<SuggestionCard spotlight={spotlight} />
 						</SwiperSlide>
 					))}
 					<div className="swiper-pagination"></div>
-					<div
-						className="swiper-button-next opacity-25 hover:opacity-70 duration-200"
-						style={{ color: "#c5c5c5" }}
-					></div>
-					<div
-						className="swiper-button-prev opacity-25 hover:opacity-70 duration-200"
-						style={{ color: "#c5c5c5" }}
-					></div>
+					<div className="absolute right-10 grid top-85/100 mt-1 py-2 -translate-y-1/2 gap-2 z-20">
+						<button
+							onClick={handlePrev}
+							className="bg-slate-800/60 h-full p-1 rounded-xl text-lg text-slate-200 shadow hover:bg-slate-700/70 transition"
+						>
+							<MdKeyboardArrowLeft size={28} />
+						</button>
+						<button
+							onClick={handleNext}
+							className="bg-slate-800/60 h-full p-1 rounded-xl text-lg text-slate-200 shadow hover:bg-slate-700/70 transition"
+						>
+							<MdKeyboardArrowRight size={28} />
+						</button>
+					</div>
 				</Swiper>
 			)}
 		</div>

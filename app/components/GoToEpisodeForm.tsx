@@ -1,9 +1,10 @@
 import { useState } from "react";
-// import { useDispatch } from "react-redux";
-// import { goToEpisode } from "../redux/animeSlice";
-// import checkEpisode from "../utils/checkEpisode";
-import type { AnimeDetail } from "@/types/anime.type";
+import { useDispatch } from "react-redux";
+
 import checkEpisode from "@/lib/checkEpisodes";
+import { goToEpisode } from "@/lib/anime.slice";
+
+import type { AnimeDetail } from "@/types/anime.type";
 
 interface Props {
 	animeData: AnimeDetail;
@@ -12,13 +13,13 @@ interface Props {
 const GoToEpisodeForm = ({ animeData }: Props) => {
 	const [episodeInput, setEpisodeInput] = useState<number | null>(null);
 	const { errorMessage } = checkEpisode(episodeInput, animeData);
-	// const dispatch = useDispatch();
+	const dispatch = useDispatch();
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		if (episodeInput) {
 			// if there's no error then do the dispatch
-			// if (!errorMessage) dispatch(goToEpisode(episodeInput));
+			if (!errorMessage) dispatch(goToEpisode(episodeInput));
 		}
 	};
 

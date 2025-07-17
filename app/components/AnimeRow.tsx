@@ -1,18 +1,20 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide, type SwiperRef } from "swiper/react";
 import { Navigation } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/navigation";
 import AnimeCardShowroom from "./AnimeCardShowroom";
+import AnimeCardSkeleton from "./AnimeCardSkeleton";
 
 import { fetchAnimeList } from "@/lib/api"; // Adjust the import path as necessary
-import AnimeCardSkeleton from "./AnimeCardSkeleton";
+import { useWindowSize } from "usehooks-ts";
+
 import { APIEndpoint } from "@/enum/anime.enum"; // Adjust the import path as necessary
 
 import type { AnimeList } from "@/types/anime.type";
-// import useWindowDimensions from "../utils/useWindowDimensions";
+import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 
 interface Props {
 	rowTitle: string;
@@ -24,8 +26,7 @@ const AnimeRow = ({ rowTitle, category, toPage }: Props) => {
 	const [animeData, setAnimeData] = useState<AnimeList[]>([]);
 	const [loading, setLoading] = useState(true);
 
-	// const { width } = useWindowDimensions();
-	const width: number = 1281;
+	const { width } = useWindowSize();
 
 	const fetchData = async () => {
 		try {
@@ -46,6 +47,17 @@ const AnimeRow = ({ rowTitle, category, toPage }: Props) => {
 	const slidesPerView =
 		width < 640 ? 2 : width < 768 ? 3 : width < 1024 ? 3 : width < 1280 ? 5 : 5;
 
+	// Create a ref for the Swiper instance navigation
+	const swiperRef = useRef<SwiperRef>(null);
+
+	const handlePrev = () => {
+		if (swiperRef.current) swiperRef.current.swiper.slidePrev();
+	};
+
+	const handleNext = () => {
+		if (swiperRef.current) swiperRef.current.swiper.slideNext();
+	};
+
 	return (
 		<div className="flex flex-col w-[90%] lg:w-[80%] mt-2 text-left font-medium text-slate-200 pb-5 overflow-visible">
 			<div className="w-fit">
@@ -61,30 +73,35 @@ const AnimeRow = ({ rowTitle, category, toPage }: Props) => {
 						<AnimeCardSkeleton />
 					</div>
 				) : (
-					<Swiper
-						modules={[Navigation]}
-						navigation={{
-							nextEl: ".swiper-button-next",
-							prevEl: ".swiper-button-prev",
-						}}
-						slidesPerView={slidesPerView}
-						spaceBetween={5}
-						className="anime-row-swiper overflow-visible"
-					>
-						{animeData.map((anime, index) => (
-							<SwiperSlide key={index} className="pt-3 pb-2 overflow-visible">
-								<AnimeCardShowroom data={anime} />
-							</SwiperSlide>
-						))}
-						<div
-							className="swiper-button-next opacity-25 hover:opacity-70 duration-200"
-							style={{ color: "#c5c5c5" }}
-						></div>
-						<div
-							className="swiper-button-prev opacity-25 hover:opacity-70 duration-200"
-							style={{ color: "#c5c5c5" }}
-						></div>
-					</Swiper>
+					<div className="relative w-full h-full ">
+						<Swiper
+							ref={swiperRef}
+							modules={[Navigation]}
+							slidesPerView={slidesPerView}
+							spaceBetween={12}
+							className="overflow-visible space-x-4"
+						>
+							{animeData.map((anime, index) => (
+								<SwiperSlide key={index} className="pt-3 pb-2">
+									<AnimeCardShowroom data={anime} />
+								</SwiperSlide>
+							))}
+						</Swiper>
+						<div className="absolute h-full -right-14 hidden 2xl:-right-10 lg:grid top-1/2 mt-1 py-2 -translate-y-1/2 gap-3 z-20">
+							<button
+								onClick={handlePrev}
+								className="bg-slate-800/80 h-full p-2 rounded-xl text-lg text-slate-200 shadow hover:bg-slate-700 transition"
+							>
+								<MdKeyboardArrowLeft size={28} />
+							</button>
+							<button
+								onClick={handleNext}
+								className="bg-slate-800/80 h-full p-2 rounded-xl text-lg text-slate-200 shadow hover:bg-slate-700 transition"
+							>
+								<MdKeyboardArrowRight size={28} />
+							</button>
+						</div>
+					</div>
 				)}
 			</div>
 		</div>

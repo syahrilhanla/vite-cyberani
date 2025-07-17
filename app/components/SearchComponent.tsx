@@ -44,10 +44,7 @@ const SearchComponent = () => {
 
 	return (
 		<div className="relative max-w-md mr-4">
-			<div
-				className={`flex items-center bg-transparent group px-4 py-2 transition-all
-				border-b border-slate-600 ${searchText ? "w-72" : "w-48 focus-within:w-72"}`}
-			>
+			<div className="flex items-center bg-slate-200 rounded-sm group px-4 py-2 transition-all w-72">
 				<input
 					type="text"
 					placeholder="Search anime..."
@@ -61,9 +58,9 @@ const SearchComponent = () => {
 							setSearchParams({ search: searchText });
 						}
 					}}
-					className="bg-transparent outline-none focus:text-slate-300 text-slate-600 w-full placeholder-slate-400"
+					className="bg-transparent outline-none text-slate-600 w-full placeholder-slate-500/80"
 				/>
-				<FaSearch className="text-slate-400 mr-2" />
+				<FaSearch className="text-slate-500/80" />
 			</div>
 
 			{searchQuery.length >= 3 && (
