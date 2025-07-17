@@ -59,6 +59,7 @@ const Suggestion = () => {
 			) : (
 				<Swiper
 					// install Swiper modules
+					ref={swiperRef}
 					modules={[Navigation, Pagination, Autoplay]}
 					navigation={{
 						nextEl: ".swiper-button-next",
