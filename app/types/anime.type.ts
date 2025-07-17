@@ -14,15 +14,20 @@ export interface AnimeList {
 }
 
 export interface SuggestionAnime {
-  imgURL: string;
-  yearRelease: number;
+  id: string;
   title: string;
-  link: string;
-  genre: string;
-  season: string;
+  japaneseTitle: string;
+  banner: string;
+  rank: number;
+  url: string;
   type: string;
+  duration: string;
+  releaseDate: string;
+  quality: string;
+  sub: number;
+  dub: number;
+  episodes: number;
   description: string;
-  totalEpisodes: number;
 }
 
 export interface AnimeEpisode {
