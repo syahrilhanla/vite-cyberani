@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide, type SwiperRef } from "swiper/react";
 import { Navigation } from "swiper/modules";
 
 import "swiper/css";
@@ -47,16 +47,14 @@ const AnimeRow = ({ rowTitle, category, toPage }: Props) => {
 	const slidesPerView =
 		width < 640 ? 2 : width < 768 ? 3 : width < 1024 ? 3 : width < 1280 ? 5 : 5;
 
-	const swiperRef = useRef<any>(null);
+	// Create a ref for the Swiper instance navigation
+	const swiperRef = useRef<SwiperRef>(null);
 
 	const handlePrev = () => {
 		if (swiperRef.current) swiperRef.current.swiper.slidePrev();
 	};
 
 	const handleNext = () => {
-		console.log("Next button clicked");
-		console.log(swiperRef.current);
-
 		if (swiperRef.current) swiperRef.current.swiper.slideNext();
 	};
 
