@@ -43,7 +43,7 @@ export default function App() {
 	return (
 		<>
 			<Navbar />
-			<div className="w-full flex flex-col items-center min-h-dvh overflow-auto bg-[#0a192f] font-[Inter]">
+			<div className="w-full flex flex-col items-center min-h-dvh bg-[#0a192f] font-[Inter]">
 				<Outlet />
 			</div>
 		</>
