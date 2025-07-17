@@ -14,7 +14,7 @@ export enum APIEndpoint {
   MOST_FAVORITE = "most-favorite",
   LATEST_COMPLETED = "latest-completed",
   RECENT_ADDED = "recent-added",
-  SUGGESTIONS = "suggestions",
+  SUGGESTIONS = "spotlight",
   INFO = "info", // use with ?id=
   WATCH = "watch", // use with /:episodeId
   GENRE_LIST = "genre/list",

@@ -1,5 +1,5 @@
 import type { APIEndpoint } from "@/enum/anime.enum";
-import type { AnimeList, AnimeDetail } from "@/types/anime.type";
+import type { AnimeList, AnimeDetail, SuggestionAnime } from "@/types/anime.type";
 
 const BASE_URL = import.meta.env.VITE_API_URL;
 
@@ -55,5 +55,15 @@ export const fetchAnimeByGenre = async (
   const { results, totalPages } = await fetchJSON<{ results: AnimeList[], totalPages: number }>(
     `${BASE_URL}/genre/${genre}?page=${page}`
   );
+
   return { results, totalPages };
+};
+
+// Fetch spotlights 
+export const fetchSpotlightAnime = async (): Promise<SuggestionAnime[]> => {
+  const { results } = await fetchJSON<{ results: SuggestionAnime[] }>(
+    `${BASE_URL}/spotlight`
+  );
+
+  return results;
 };
