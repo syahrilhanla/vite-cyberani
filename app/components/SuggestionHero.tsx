@@ -8,10 +8,9 @@ import "swiper/css/pagination";
 import "swiper/css/autoplay";
 
 import SuggestionCard from "./SuggestionCard";
-import { fetchAnimeList } from "@/lib/api";
+import { fetchSpotlightAnime } from "@/lib/api";
 
 import type { SuggestionAnime } from "@/types/anime.type";
-import { APIEndpoint } from "@/enum/anime.enum";
 
 const HeroSkeleton = () => (
 	<div className="h-full w-full bg-gradient-to-r from-slate-800 to-slate-700 animate-pulse rounded-lg flex flex-col justify-center items-start p-6">
@@ -30,22 +29,9 @@ const Suggestion = () => {
 		const fetchTopAiring = async () => {
 			setLoading(true);
 
-			const { results } = await fetchAnimeList(APIEndpoint.SUGGESTIONS);
+			const spotlights = await fetchSpotlightAnime();
 
-			setTopAiringList(
-				results.map((anime: any) => ({
-					imgURL: anime.image,
-					yearRelease: anime.season,
-					title: anime.title,
-					link: `/anime/${anime.id}`,
-					genre: anime.genres.join(", "),
-					season: anime.season,
-					type: anime.type,
-					description: anime.description,
-					totalEpisodes: anime.totalEpisodes,
-				}))
-			);
-
+			setTopAiringList(spotlights);
 			setLoading(false);
 		};
 
@@ -53,7 +39,7 @@ const Suggestion = () => {
 	}, []);
 
 	return (
-		<div className="w-[95%] mb-7">
+		<div className="w-full mb-7">
 			{loading ? (
 				<div className="flex justify-center items-center h-[20dvh] lg:h-[30dvh] xl:h-[50dvh] text-slate-200">
 					<HeroSkeleton />
@@ -82,7 +68,7 @@ const Suggestion = () => {
 				>
 					{topAiringList.map((data: any) => (
 						<SwiperSlide key={data.title}>
-							<SuggestionCard data={data} />
+							<SuggestionCard spotlight={data} />
 						</SwiperSlide>
 					))}
 					<div className="swiper-pagination"></div>
