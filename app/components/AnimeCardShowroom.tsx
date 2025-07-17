@@ -23,7 +23,7 @@ const AnimeCardShowroom = ({ data }: Props) => {
 					<img
 						src={data.image}
 						alt={data.title}
-						className="object-contain duration-500 group-hover:opacity-20 hover:blur-[1px] opacity-[0.75] rounded-t-3xl w-70 h-98"
+						className="duration-500 group-hover:opacity-20 hover:blur-[1px] opacity-80 rounded-t-3xl w-70 h-98"
 					/>
 				</div>
 
