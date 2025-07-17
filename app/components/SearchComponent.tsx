@@ -58,7 +58,7 @@ const SearchComponent = () => {
 							setSearchParams({ search: searchText });
 						}
 					}}
-					className="bg-transparent outline-none focus:text-slate-300 text-slate-600 w-full placeholder-slate-500/80"
+					className="bg-transparent outline-none text-slate-600 w-full placeholder-slate-500/80"
 				/>
 				<FaSearch className="text-slate-500/80" />
 			</div>
