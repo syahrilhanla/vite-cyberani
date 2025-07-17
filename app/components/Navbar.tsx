@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router";
 
 import { FaBars, FaTimes } from "react-icons/fa";
@@ -7,6 +7,22 @@ import "../global.css";
 
 const Navbar = () => {
 	const [navbar, setNavbar] = useState(false);
+	const [isAtTop, setIsAtTop] = useState(true);
+
+	const handleScroll = () => {
+		if (window.scrollY > 0) {
+			setIsAtTop(false);
+		} else {
+			setIsAtTop(true);
+		}
+	};
+
+	useEffect(() => {
+		window.addEventListener("scroll", handleScroll);
+		return () => {
+			window.removeEventListener("scroll", handleScroll);
+		};
+	}, []);
 
 	const setMobileNavbar = () => {
 		if (!navbar) {
@@ -16,14 +32,23 @@ const Navbar = () => {
 	};
 
 	return (
-		<div className="fixed h-[10vh] w-full flex justify-between items-center px-4 bg-[#0a192f] text-gray-300 z-50">
+		<div
+			className={`fixed h-20 w-full flex justify-between items-center px-4 text-gray-300 z-50 transition-colors duration-300 ${
+				isAtTop ? "bg-transparent" : "bg-[#0a192fd8] shadow-lg"
+			}`}
+		>
 			<div className=" hidden lg:flex justify-around items-center lg:w-fit">
 				<div className="ml-4 w-fit h-16 flex items-center text-2xl font-light font-['Orbitron']">
 					<NavLink to={"/"}>CyberAni</NavLink>
 				</div>
 
+				{/* Search Bar */}
+				<span className="ml-12">
+					<SearchComponent />
+				</span>
+
 				{/* Menu */}
-				<ul className="hidden lg:flex justify-between min-w-max gap-6 ml-14 font-medium">
+				<ul className="hidden lg:flex justify-between min-w-max gap-6 ml-6 font-medium">
 					<li>
 						<NavLink to={"/popular"}>Popular</NavLink>
 					</li>
@@ -41,9 +66,6 @@ const Navbar = () => {
 					</li>
 				</ul>
 			</div>
-
-			{/* Search Bar */}
-			<SearchComponent />
 
 			{/* ======================= MOBILE LAYOUT ============================ */}
 			{/* Hamburger */}
