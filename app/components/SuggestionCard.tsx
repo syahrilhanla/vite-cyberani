@@ -1,8 +1,10 @@
-import type { SuggestionAnime } from "@/types/anime.type";
+import { NavLink } from "react-router";
+
 import { FaCalendar, FaPlayCircle } from "react-icons/fa";
 import { GrChapterAdd } from "react-icons/gr";
 import { IoPlayCircle } from "react-icons/io5";
-import { NavLink } from "react-router";
+
+import type { SuggestionAnime } from "@/types/anime.type";
 
 interface Props {
 	spotlight: SuggestionAnime;
@@ -18,8 +20,6 @@ const SuggestionCard = ({ spotlight }: Props) => {
 			>
 				<div className="relative px-4 md:px-12 lg:py-0 py-8 z-10 flex flex-col gap-1 md:gap-4 items-start justify-end lg:justify-center h-full overflow-visible">
 					<h2 className="max-w-xs md:max-w-2xs lg:max-w-2xl whitespace-nowrap truncate text-xl sm:text-2xl lg:text-4xl font-bold text-slate-200">
-						{spotlight.title}
-						{spotlight.title}
 						{spotlight.title}
 					</h2>
 					<div className="hidden md:flex gap-5 text-slate-200">

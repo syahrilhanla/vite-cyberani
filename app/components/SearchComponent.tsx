@@ -2,9 +2,12 @@ import { useCallback, useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { useDebounceValue } from "usehooks-ts";
 import { useSearchParams } from "react-router";
-import { fetchAnimeBySearch } from "@/lib/api";
-import type { AnimeList } from "@/types/anime.type";
+
 import DisplayResults from "./DisplayResults";
+
+import { fetchAnimeBySearch } from "@/lib/api";
+
+import type { AnimeList } from "@/types/anime.type";
 
 const SearchComponent = () => {
 	const [searchText, setSearchText] = useState("");
@@ -51,7 +54,9 @@ const SearchComponent = () => {
 					value={searchText}
 					onChange={(e) => setSearchText(e.target.value)}
 					onBlur={() => {
-						setSearchParams({});
+						setTimeout(() => {
+							setSearchParams({});
+						}, 200);
 					}}
 					onFocus={() => {
 						if (searchText.length >= 3) {
