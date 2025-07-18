@@ -51,7 +51,7 @@ const Suggestion = () => {
 	};
 
 	return (
-		<div className="w-full mb-7">
+		<div className="w-full mb-7 md:mt-0 mt-20">
 			{loading ? (
 				<div className="flex justify-center items-center h-[20dvh] lg:h-[50dvh] text-slate-200">
 					<HeroSkeleton />
@@ -84,7 +84,7 @@ const Suggestion = () => {
 						</SwiperSlide>
 					))}
 					<div className="swiper-pagination"></div>
-					<div className="absolute right-10 grid top-85/100 mt-1 py-2 -translate-y-1/2 gap-2 z-20">
+					<div className="absolute right-10 hidden md:grid top-85/100 mt-1 py-2 -translate-y-1/2 gap-2 z-20">
 						<button
 							onClick={handlePrev}
 							className="bg-slate-800/60 h-full p-1 rounded-xl text-lg text-slate-200 shadow hover:bg-slate-700/70 transition"
