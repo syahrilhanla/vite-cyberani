@@ -13,6 +13,7 @@ import { store } from "app/lib/anime.store";
 import type { Route } from "./+types/root";
 import "./global.css";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 export const links: Route.LinksFunction = () => [
 	{ rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -45,6 +46,7 @@ export default function App() {
 			<Navbar />
 			<div className="w-full flex flex-col items-center min-h-dvh bg-[#0a192f] font-[Inter]">
 				<Outlet />
+				<Footer />
 			</div>
 		</>
 	);
