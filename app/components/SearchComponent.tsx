@@ -1,6 +1,6 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { FaSearch } from "react-icons/fa";
-import { useDebounceValue } from "usehooks-ts";
+import { useDebounceValue, useOnClickOutside } from "usehooks-ts";
 import { useSearchParams } from "react-router";
 
 import DisplayResults from "./DisplayResults";
@@ -16,8 +16,17 @@ const SearchComponent = () => {
 	const [searchParams, setSearchParams] = useSearchParams();
 
 	const [debouncedSearchText] = useDebounceValue(searchText, 500);
-
 	const searchQuery = searchParams.get("search") || "";
+
+	const searchRef = useRef<HTMLDivElement>(null!);
+
+	useOnClickOutside(
+		[searchRef],
+		() => {
+			setSearchParams({});
+		},
+		"mousedown"
+	);
 
 	const fetchData = useCallback(
 		async (query: string) => {
@@ -46,18 +55,13 @@ const SearchComponent = () => {
 	}, [fetchData, debouncedSearchText]);
 
 	return (
-		<div className="relative max-w-md mr-4">
+		<div ref={searchRef} className="relative max-w-md mr-4">
 			<div className="flex items-center bg-slate-200 rounded-sm group px-4 py-2 transition-all w-72">
 				<input
 					type="text"
 					placeholder="Search anime..."
 					value={searchText}
 					onChange={(e) => setSearchText(e.target.value)}
-					onBlur={() => {
-						setTimeout(() => {
-							setSearchParams({});
-						}, 200);
-					}}
 					onFocus={() => {
 						if (searchText.length >= 3) {
 							setSearchParams({ search: searchText });
