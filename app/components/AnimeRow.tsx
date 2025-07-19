@@ -61,7 +61,7 @@ const AnimeRow = ({ rowTitle, category, toPage }: Props) => {
 	return (
 		<div className="flex flex-col w-[90%] lg:w-[80%] mt-2 text-left font-medium text-slate-200 pb-5 overflow-visible">
 			<div className="w-full flex justify-between items-center">
-				<h1 className="text-2xl mb-2 ml-2 cursor-pointer">{rowTitle}</h1>
+				<h1 className="text-2xl mb-2 ml-2">{rowTitle}</h1>
 				<NavLink to={`/${toPage}`}>
 					<span className="lg:-mr-12 text-sm flex items-center hover:text-slate-300 transition-all duration-300 hover:scale-105">
 						See All <MdKeyboardArrowRight size={18} />

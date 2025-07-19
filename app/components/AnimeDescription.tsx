@@ -26,7 +26,7 @@ const AnimeDescription = ({ animeData }: Props) => {
 			{/* Anime Details */}
 			<div className="p-4 gap-2 md:gap-3 grid grid-cols-1 w-full lg:w-auto">
 				<button
-					className="lg:hidden w-full px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-md
+					className="xl:hidden w-full md:mb-3 px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-md
 						hover:scale-105 transition-transform duration-300 font-semibold shadow-md"
 					onClick={() => {
 						window.scrollTo({

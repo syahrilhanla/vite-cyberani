@@ -43,7 +43,7 @@ const Episodes = ({ animeData }: Props) => {
 	);
 
 	return (
-		<div className="bg-[#16213e]/70 rounded-2xl shadow-xl py-2 px-3 text-slate-200 h-[85vh] flex flex-col">
+		<div className="bg-[#16213e]/70 rounded-2xl shadow-xl py-2 px-3 text-slate-200 lg:h-[85vh] flex flex-col">
 			<div className="sticky top-0 z-20 rounded-t-2xl pb-2 mb-2">
 				<h1 className="md:text-xl text-lg font-semibold mb-2 text-blue-200 tracking-wide">
 					List of Episodes

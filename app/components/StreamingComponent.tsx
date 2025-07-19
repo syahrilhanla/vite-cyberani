@@ -31,7 +31,7 @@ const StreamingComponent = ({ title, episodeDetail, synopsis }: Props) => {
 	return (
 		<div
 			id="streaming-component"
-			className="lg:min-h-[360px] mb-12 lg:mb-0 max-w-full lg:max-w-[55dvw] aspect-auto lg:aspect-video"
+			className="lg:min-h-[360px] mb-12 lg:mb-0 max-w-full aspect-video"
 		>
 			<section className="flex flex-col gap-0.5 mb-4">
 				<h1 className="text-xl font-semibold text-slate-200">{title}</h1>
