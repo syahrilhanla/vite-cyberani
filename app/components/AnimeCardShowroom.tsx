@@ -1,49 +1,61 @@
 import { goToEpisode } from "@/lib/anime.slice";
+import type { AnimeList } from "@/types/anime.type";
+import { GrChapterAdd } from "react-icons/gr";
 import { useDispatch } from "react-redux";
 import { NavLink } from "react-router";
 
 interface Props {
-	data: any;
+	data: AnimeList;
 }
 
 const AnimeCardShowroom = ({ data }: Props) => {
 	const dispatch = useDispatch();
 
 	return (
-		<NavLink to={`/anime/${data.id}`}>
-			<article
-				className="group relative w-fit shadow-lg hover:scale-[1.02] transition-all duration-300 overflow-hidden
-					cursor-pointer rounded-3xl xl:h-[20rem] h-[14rem]"
-				onClick={() => {
-					dispatch(goToEpisode(1));
-				}}
+		<article
+			className="space-y-2 w-fit mx-1 lg:mx-0 sm:w-48 md:w-52 lg:w-56 xl:w-64 group"
+			onClick={() => {
+				dispatch(goToEpisode(1));
+			}}
+		>
+			<NavLink
+				className={"w-fit sm:w-48 md:w-52 lg:w-56 xl:w-64"}
+				to={`/anime/${data.id}`}
 			>
-				{/* Anime Image */}
-				<div className="rounded-t-3xl">
-					<img
-						src={data.image}
-						alt={data.title}
-						className="duration-500 group-hover:opacity-20 hover:blur-[1px] opacity-80 rounded-t-3xl w-70 h-98"
-					/>
+				<div
+					className="group grid w-fit shadow-lg group-hover:scale-[1.02] transition-all duration-300 overflow-hidden
+				cursor-pointer xl:h-[20rem] h-[14rem] rounded-lg"
+				>
+					{/* Anime Image */}
+					<div className="rounded-t-lg relative">
+						<img
+							src={data.image}
+							alt={data.title}
+							className="w-fit sm:w-48 md:w-52 lg:w-56 xl:w-64 object-cover h-full"
+						/>
+						<div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black wto-transparent h-16" />
+					</div>
 				</div>
 
 				{/* Anime Info */}
-				<div className="absolute bottom-1 left-0 right-0 z-20 flex flex-col items-center">
+				<div className="flex flex-col items-center gap-1 mt-1">
 					<h3
-						className="text-slate-100 hover:text-white font-semibold 
-						text-lg text-center truncate w-full drop-shadow-lg 
-						whitespace-normal text-ellipsis max-w-full px-3"
+						className="text-slate-200 
+						lg:text-base text-sm text-center w-full 
+						whitespace-normal text-ellipsis max-w-full line-clamp-1"
+						title={data.title}
 					>
 						{data.title}
 					</h3>
-					<div className="flex items-center gap-1 text-xs text-white/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-						{data.type && (
-							<span className="px-2 py-0.5 rounded-full">{data.type}</span>
-						)}
+					<div className="w-full flex justify-between items-center">
+						<p className="flex gap-1 items-center text-sm">
+							<GrChapterAdd className="text-slate-400" /> {data.sub}
+						</p>
+						<p className="text-xs rounded-full text-slate-400">{data.type}</p>
 					</div>
 				</div>
-			</article>
-		</NavLink>
+			</NavLink>
+		</article>
 	);
 };
 
