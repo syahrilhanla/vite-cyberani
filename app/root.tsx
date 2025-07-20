@@ -42,13 +42,13 @@ export const links: Route.LinksFunction = () => [
 
 export default function App() {
 	return (
-		<>
+		<div className="bg-[#0a192f]">
 			<Navbar />
-			<div className="w-full flex flex-col items-center min-h-dvh bg-[#0a192f] font-[Inter]">
+			<div className="w-full max-w-full [@media(min-width:1900px)]:max-w-[1900px] mx-auto flex flex-col items-center min-h-dvh bg-[#0a192f] font-[Inter]">
 				<Outlet />
 				<Footer />
 			</div>
-		</>
+		</div>
 	);
 }
 

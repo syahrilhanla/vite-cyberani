@@ -13,8 +13,8 @@ const AnimeDescription = ({ animeData }: Props) => {
 	const [expandDescription, setExpandDescription] = useState(false);
 
 	return (
-		<div className="w-full h-fit flex flex-wrap gap-2 items-start justify-center text-slate-200 bg-[#16213e]/80 backdrop-blur-md rounded-lg shadow-lg p-6">
-			{/* Anime Image */}
+		<div className="w-full h-fit flex flex-wrap gap-2 items-start justify-center text-slate-200 bg-[#16213e]/70 backdrop-blur-md rounded-lg shadow-lg p-6">
+			{/* Anime Poster */}
 			{animeData.image && (
 				<img
 					src={animeData.image}
@@ -26,7 +26,7 @@ const AnimeDescription = ({ animeData }: Props) => {
 			{/* Anime Details */}
 			<div className="p-4 gap-2 md:gap-3 grid grid-cols-1 w-full lg:w-auto">
 				<button
-					className="lg:hidden w-full px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-md
+					className="xl:hidden w-full md:mb-3 px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-md
 						hover:scale-105 transition-transform duration-300 font-semibold shadow-md"
 					onClick={() => {
 						window.scrollTo({
