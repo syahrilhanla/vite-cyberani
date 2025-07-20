@@ -13,12 +13,15 @@ const AnimeCardShowroom = ({ data }: Props) => {
 
 	return (
 		<article
-			className="space-y-2 w-64 group"
+			className="space-y-2 w-fit mx-1 lg:mx-0 sm:w-48 md:w-52 lg:w-56 xl:w-64 group"
 			onClick={() => {
 				dispatch(goToEpisode(1));
 			}}
 		>
-			<NavLink className={"w-64"} to={`/anime/${data.id}`}>
+			<NavLink
+				className={"w-fit sm:w-48 md:w-52 lg:w-56 xl:w-64"}
+				to={`/anime/${data.id}`}
+			>
 				<div
 					className="group grid w-fit shadow-lg group-hover:scale-[1.02] transition-all duration-300 overflow-hidden
 				cursor-pointer xl:h-[20rem] h-[14rem] rounded-lg"
@@ -28,7 +31,7 @@ const AnimeCardShowroom = ({ data }: Props) => {
 						<img
 							src={data.image}
 							alt={data.title}
-							className="w-64 object-cover h-full"
+							className="w-fit sm:w-48 md:w-52 lg:w-56 xl:w-64 object-cover h-full"
 						/>
 						<div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black wto-transparent h-16" />
 					</div>

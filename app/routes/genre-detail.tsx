@@ -27,17 +27,11 @@ const GenreDetail = ({ loaderData, params }: Route.ComponentProps) => {
 	const { animeList, totalPages } = loaderData;
 
 	return (
-		<div className="lg:w-[70%] my-6">
-			<div>
-				<h1 className="text-left text-slate-200 text-3xl font-semibold capitalize">
-					{genre}
-				</h1>
-			</div>
-			<div
-				className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4
-				mt-2 mb-4 text-left font-medium text-slate-100 pb-2"
-			>
-				{/* if data results come as series and not as an episode than render AnimeShowroom */}
+		<div className="xl:max-w-[75%] px-12 lg:px-4 mx-auto my-6">
+			<h1 className="w-full text-left text-slate-200 text-3xl font-semibold capitalize">
+				{genre}
+			</h1>
+			<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 xl:grid-cols-4 gap-4 my-4">
 				{animeList &&
 					animeList.map((data) => (
 						<AnimeCardShowroom data={data} key={data.title} />

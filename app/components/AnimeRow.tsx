@@ -45,7 +45,17 @@ const AnimeRow = ({ rowTitle, category, toPage }: Props) => {
 	}, []);
 
 	const slidesPerView =
-		width < 640 ? 2 : width < 768 ? 3 : width < 1024 ? 3 : width < 1280 ? 5 : 5;
+		width <= 640
+			? 2
+			: width <= 768
+			? 2
+			: width <= 1024
+			? 3
+			: width <= 1280
+			? 3
+			: width <= 1440
+			? 4
+			: 5;
 
 	// Create a ref for the Swiper instance navigation
 	const swiperRef = useRef<SwiperRef>(null);
@@ -59,7 +69,7 @@ const AnimeRow = ({ rowTitle, category, toPage }: Props) => {
 	};
 
 	return (
-		<div className="flex flex-col w-[90%] lg:w-[75dvw] mt-2 text-left font-medium text-slate-200 pb-5 overflow-visible">
+		<div className="px-4 flex flex-col w-full md:w-[90%] lg:w-[80%] mt-2 text-left font-medium text-slate-200 pb-5 overflow-visible">
 			<div className="w-full flex justify-between items-center">
 				<h1 className="text-2xl mb-2 ml-2">{rowTitle}</h1>
 				<NavLink to={`/${toPage}`}>
@@ -79,11 +89,11 @@ const AnimeRow = ({ rowTitle, category, toPage }: Props) => {
 							ref={swiperRef}
 							modules={[Navigation]}
 							slidesPerView={slidesPerView}
-							spaceBetween={1}
+							spaceBetween={12}
 							className="overflow-visible space-x-4"
 						>
 							{animeData.map((anime, index) => (
-								<SwiperSlide key={index} className="pt-3 pb-2">
+								<SwiperSlide key={index} className="pt-3 pb-2 flex gap-2">
 									<AnimeCardShowroom data={anime} />
 								</SwiperSlide>
 							))}
