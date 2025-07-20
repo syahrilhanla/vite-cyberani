@@ -59,11 +59,11 @@ const AnimeRow = ({ rowTitle, category, toPage }: Props) => {
 	};
 
 	return (
-		<div className="flex flex-col w-[90%] lg:w-[80%] mt-2 text-left font-medium text-slate-200 pb-5 overflow-visible">
+		<div className="flex flex-col w-[90%] lg:w-[75dvw] mt-2 text-left font-medium text-slate-200 pb-5 overflow-visible">
 			<div className="w-full flex justify-between items-center">
 				<h1 className="text-2xl mb-2 ml-2">{rowTitle}</h1>
 				<NavLink to={`/${toPage}`}>
-					<span className="lg:-mr-12 text-sm flex items-center hover:text-slate-300 transition-all duration-300 hover:scale-105">
+					<span className="lg:-mr-12 text-base flex items-center hover:text-slate-300 transition-all duration-300 hover:scale-105">
 						See All <MdKeyboardArrowRight size={18} />
 					</span>
 				</NavLink>
@@ -74,12 +74,12 @@ const AnimeRow = ({ rowTitle, category, toPage }: Props) => {
 						<AnimeCardSkeleton />
 					</div>
 				) : (
-					<div className="relative w-full h-full ">
+					<div className="relative  h-full ">
 						<Swiper
 							ref={swiperRef}
 							modules={[Navigation]}
 							slidesPerView={slidesPerView}
-							spaceBetween={12}
+							spaceBetween={1}
 							className="overflow-visible space-x-4"
 						>
 							{animeData.map((anime, index) => (
