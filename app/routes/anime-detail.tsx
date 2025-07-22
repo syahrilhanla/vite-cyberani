@@ -12,7 +12,6 @@ import type { RootState } from "@/lib/anime.store";
 
 export const loader = async ({ params }: Route.LoaderArgs) => {
 	const animeDetail = await fetchAnimeDetail(params.id);
-
 	return { animeDetail };
 };
 
