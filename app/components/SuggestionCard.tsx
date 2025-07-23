@@ -58,7 +58,7 @@ const SuggestionCard = ({ spotlight }: Props) => {
 				</div>
 				<div className="absolute xl:relative w-full h-full">
 					<div
-						className="absolute inset-0 bg-cover bg-center"
+						className="absolute inset-0 bg-cover bg-center md:mask-none mask-b-from-50% mask-b-to-95%"
 						style={{
 							backgroundImage: `url(${spotlight.banner})`,
 						}}
