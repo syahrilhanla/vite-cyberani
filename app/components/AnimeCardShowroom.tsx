@@ -27,13 +27,13 @@ const AnimeCardShowroom = ({ data }: Props) => {
 				cursor-pointer xl:h-[20rem] h-[14rem] rounded-lg"
 				>
 					{/* Anime Image */}
-					<div className="rounded-t-lg relative w-full aspect-[3/4] min-h-0 min-w-0">
+					<div className="rounded-t-lg relative w-full min-h-0 min-w-0">
 						<img
 							src={data.image}
 							alt={data.title}
 							className="w-full h-full object-cover min-h-0 min-w-0"
 						/>
-						<div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent h-16" />
+						<div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-slate-900/90 to-transparent h-16" />
 					</div>
 				</div>
 
