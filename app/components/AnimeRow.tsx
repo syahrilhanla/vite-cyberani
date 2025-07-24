@@ -25,6 +25,7 @@ interface Props {
 const AnimeRow = ({ rowTitle, category, toPage }: Props) => {
 	const [animeData, setAnimeData] = useState<AnimeList[]>([]);
 	const [loading, setLoading] = useState(true);
+
 	const [swiperInstance, setSwiperInstance] = useState<SwiperClass | null>(
 		null
 	);
