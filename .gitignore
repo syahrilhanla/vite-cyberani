@@ -5,7 +5,9 @@
 /.react-router/
 /build/
 
-.env*
+.env.local
+.env
+.env.production
 
 #netlify
 /.netlify/
