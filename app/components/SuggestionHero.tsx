@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Autoplay, Pagination } from "swiper/modules";
+import { Navigation, Autoplay } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -8,10 +8,11 @@ import "swiper/css/pagination";
 import "swiper/css/autoplay";
 
 import SuggestionCard from "./SuggestionCard";
+import SuggestionNavigation from "./SuggestionNavigation";
+
 import { fetchSpotlightAnime } from "@/lib/api";
 
 import type { SuggestionAnime } from "@/types/anime.type";
-import SuggestionNavigation from "./SuggestionNavigation";
 
 const HeroSkeleton = () => (
 	<div className="h-full w-full bg-gradient-to-r from-slate-800 to-slate-700 animate-pulse flex flex-col justify-center items-start p-6">
@@ -42,30 +43,18 @@ const Suggestion = () => {
 	return (
 		<div className="w-full mb-7 md:mt-0 mt-20">
 			{loading ? (
-				<div className="flex justify-center items-center h-[20dvh] lg:h-[50dvh] text-slate-200">
+				<div className="flex justify-center items-center h-[20dvh] lg:h-[60dvh] text-slate-200">
 					<HeroSkeleton />
 				</div>
 			) : (
 				<Swiper
-					// install Swiper modules
-					modules={[Navigation, Pagination, Autoplay]}
-					navigation={{
-						nextEl: ".swiper-button-next",
-						prevEl: ".swiper-button-prev",
-					}}
+					modules={[Navigation, Autoplay]}
 					autoplay={{ delay: 5000 }}
-					pagination={{
-						el: ".swiper-pagination",
-						clickable: true,
-						bulletClass: ".swiper-pagination-bullet",
-					}}
 					spaceBetween={100}
-					centeredSlides={true}
-					centeredSlidesBounds={true}
 					slidesPerView={1}
 					loop={true}
-					speed={1000}
 					rewind={true}
+					speed={1000}
 					className="overflow-visible"
 				>
 					{spotlights.map((spotlight) => (

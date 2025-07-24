@@ -14,7 +14,7 @@ const SuggestionCard = ({ spotlight }: Props) => {
 	return (
 		<div className=" text-gray-300 flex justify-center min-w-full">
 			<div
-				className=" grid grid-cols-[3fr_6fr] lg:grid-cols-[5fr_5fr] w-full h-64 md:h-[60dvh] backface-hidden
+				className=" grid grid-cols-[3fr_6fr] lg:grid-cols-[5fr_5fr] w-full h-64 md:h-[70dvh] 2xl:h-[60dvh] backface-hidden
 				bg-[#0a192f] hover:cursor-grab overflow-visible
 				group-hover:scale-105 group-hover:shadow-slate-800/70 transition-all duration-300"
 			>

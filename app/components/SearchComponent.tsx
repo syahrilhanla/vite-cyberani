@@ -20,13 +20,11 @@ const SearchComponent = () => {
 
 	const searchRef = useRef<HTMLDivElement>(null!);
 
-	useOnClickOutside(
-		[searchRef],
-		() => {
+	useOnClickOutside(searchRef, () => {
+		if (searchParams.has("search")) {
 			setSearchParams({});
-		},
-		"mousedown"
-	);
+		}
+	});
 
 	const fetchData = useCallback(
 		async (query: string) => {
