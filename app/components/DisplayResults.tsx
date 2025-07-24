@@ -22,13 +22,14 @@ const DisplayResults = ({ searchResults, loading }: Props) => {
 			) : searchResults.length > 0 ? (
 				searchResults.map((result) => (
 					<NavLink
+						key={result.title}
 						to={`/anime/${result.id}`}
 						className="w-full py-2 px-4 hover:bg-[#0f2647]/30 duration-400"
 						onClick={() => {
 							dispatch(goToEpisode(1));
 						}}
 					>
-						<li className="flex gap-3" key={result.title}>
+						<li className="flex gap-3">
 							<img
 								src={result.image}
 								alt={result.title}

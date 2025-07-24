@@ -1,24 +1,24 @@
-# Welcome to React Router!
 
-A modern, production-ready template for building full-stack React applications using React Router.
+# Vite CyberAni
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+An anime streaming and discovery web app built with React, TypeScript, Vite, React Router, Tailwind, Swiper, and Consumet.API. Browse, search, and explore anime titles with a modern, responsive UI and partial server-side rendering.
 
 ## Features
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+- 🔍 Search & Discover: Find your favorite anime with ease.
+- 🎥 Stream Anime: High-quality streaming for your favorite shows.
+- 📱 Responsive Design: Optimized for both desktop and mobile devices.
+- 🚀 Server-side rendering (SSR) for fast initial loads
+- ⚡️ Hot Module Replacement (HMR) in development
+- 🔒 TypeScript for type safety
+- � TailwindCSS for styling
+- 💡 Swiper.js integration
 
 ## Getting Started
 
 ### Installation
 
-Install the dependencies:
+Install dependencies:
 
 ```bash
 npm install
@@ -26,13 +26,13 @@ npm install
 
 ### Development
 
-Start the development server with HMR:
+Start the development server:
 
 ```bash
 npm run dev
 ```
 
-Your application will be available at `http://localhost:5173`.
+Visit `http://localhost:5173` in your browser.
 
 ## Building for Production
 
@@ -44,44 +44,19 @@ npm run build
 
 ## Deployment
 
-### Docker Deployment
+### Vercel
 
-To build and run using Docker:
+Deploy instantly to Vercel with React Router Configuration Preset.
 
-```bash
-docker build -t my-app .
+### Manual/DIY
 
-# Run the container
-docker run -p 3000:3000 my-app
-```
-
-The containerized application can be deployed to any platform that supports Docker, including:
-
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
-
-### DIY Deployment
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
-```
+Deploy the contents of the `build/` directory (client and server) to your preferred Node hosting platform.
 
 ## Styling
 
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
+Uses [Tailwind CSS](https://tailwindcss.com/) for rapid, responsive UI development.
+
 
 ---
 
-Built with ❤️ using React Router.
+Built with ❤️ by syahrilhanla. Powered by React, Vite, and Anime APIs.
