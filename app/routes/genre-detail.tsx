@@ -27,11 +27,14 @@ const GenreDetail = ({ loaderData, params }: Route.ComponentProps) => {
 	const { animeList, totalPages } = loaderData;
 
 	return (
-		<div className="xl:max-w-[75%] px-12 lg:px-4 mx-auto my-6">
-			<h1 className="w-full text-left text-slate-200 text-3xl font-semibold capitalize">
+		<div className="w-full lg:max-w-7xl 2xl:max-w-max mx-auto px-8 md:px-16 py-3 lg:my-6 flex flex-col justify-center items-center">
+			<h1 className="w-full text-left text-slate-200 text-3xl font-semibold">
 				{genre}
 			</h1>
-			<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 xl:grid-cols-4 gap-4 my-4">
+			<div
+				className="w-full grid md:gap-8 xl:gap-0 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5
+            mt-2 mb-4 text-left font-medium text-slate-100 pb-2"
+			>
 				{animeList &&
 					animeList.map((data) => (
 						<AnimeCardShowroom data={data} key={data.title} />
