@@ -9,7 +9,6 @@ import AnimeCardShowroom from "./AnimeCardShowroom";
 import AnimeCardSkeleton from "./AnimeCardSkeleton";
 
 import { fetchAnimeList } from "@/lib/api"; // Adjust the import path as necessary
-import { useWindowSize } from "usehooks-ts";
 
 import { APIEndpoint } from "@/enum/anime.enum"; // Adjust the import path as necessary
 
@@ -25,8 +24,6 @@ interface Props {
 const AnimeRow = ({ rowTitle, category, toPage }: Props) => {
 	const [animeData, setAnimeData] = useState<AnimeList[]>([]);
 	const [loading, setLoading] = useState(true);
-
-	const { width } = useWindowSize();
 
 	const fetchData = async () => {
 		try {
@@ -44,19 +41,6 @@ const AnimeRow = ({ rowTitle, category, toPage }: Props) => {
 		fetchData();
 	}, []);
 
-	const slidesPerView =
-		width <= 640
-			? 2
-			: width <= 768
-			? 2
-			: width <= 1024
-			? 3
-			: width <= 1280
-			? 3
-			: width <= 1440
-			? 4
-			: 5;
-
 	// Create a ref for the Swiper instance navigation
 	const swiperRef = useRef<SwiperRef>(null);
 
@@ -69,7 +53,12 @@ const AnimeRow = ({ rowTitle, category, toPage }: Props) => {
 	};
 
 	return (
-		<div className="px-4 flex flex-col w-full md:w-[90%] lg:w-[80%] mt-2 text-left font-medium text-slate-200 pb-5 overflow-visible">
+		<div
+			className="px-8 lg:px-4 pb-5 flex flex-col
+				w-full md:w-[100%] lg:w-[90%] xl:w-[80%] 2xl:w-[70%] 3xl:w-[80%]
+				lg:mr-12 mt-2 
+				text-left font-medium text-slate-200 overflow-visible"
+		>
 			<div className="w-full flex justify-between items-center">
 				<h1 className="text-2xl mb-2 ml-2">{rowTitle}</h1>
 				<NavLink to={`/${toPage}`}>
@@ -84,17 +73,51 @@ const AnimeRow = ({ rowTitle, category, toPage }: Props) => {
 						<AnimeCardSkeleton />
 					</div>
 				) : (
-					<div className="relative  h-full ">
+					<div className="relative h-full">
 						<Swiper
 							ref={swiperRef}
 							modules={[Navigation]}
-							slidesPerView={slidesPerView}
-							spaceBetween={12}
-							className="overflow-visible space-x-4"
+							breakpoints={{
+								320: {
+									slidesPerView: 2,
+									spaceBetween: 16,
+								},
+								640: {
+									slidesPerView: 3,
+									spaceBetween: 16,
+								},
+								768: {
+									slidesPerView: 4,
+									spaceBetween: 16,
+								},
+								1024: {
+									slidesPerView: 4,
+									spaceBetween: 16,
+								},
+								1280: {
+									slidesPerView: 4,
+									spaceBetween: 0,
+								},
+								1700: {
+									slidesPerView: 5,
+									spaceBetween: 0,
+								},
+								1920: {
+									slidesPerView: 5,
+									spaceBetween: 16,
+								},
+							}}
+							spaceBetween={24}
+							className="overflow-visible"
 						>
 							{animeData.map((anime, index) => (
-								<SwiperSlide key={index} className="pt-3 pb-2 flex gap-2">
-									<AnimeCardShowroom data={anime} />
+								<SwiperSlide
+									key={index}
+									className="pt-3 pb-2 flex justify-center items-center"
+								>
+									<div className="w-full h-full flex justify-center items-center">
+										<AnimeCardShowroom data={anime} />
+									</div>
 								</SwiperSlide>
 							))}
 						</Swiper>
