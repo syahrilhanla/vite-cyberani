@@ -81,14 +81,12 @@ const Category = () => {
 
 	return (
 		<>
-			<div className="w-[90%] lg:w-full p-3 my-6 flex flex-col justify-center items-center">
-				<div className="lg:w-[70%] ml-3 mb-4">
-					<h1 className="text-left text-slate-200 text-3xl font-semibold">
-						{pageInfo(category).title}
-					</h1>
-				</div>
+			<div className="w-full lg:max-w-7xl 2xl:max-w-max mx-auto px-8 md:px-16 py-3 lg:my-6 flex flex-col justify-center items-center">
+				<h1 className="w-full text-left text-slate-200 text-3xl font-semibold">
+					{pageInfo(category).title}
+				</h1>
 				<div
-					className="lg:w-[70%] grid grid-cols-2 gap-6 lg:grid-cols-3 xl:grid-cols-5
+					className="w-full grid md:gap-8 xl:gap-0 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5
             mt-2 mb-4 text-left font-medium text-slate-100 pb-2"
 				>
 					{loading ? (
